@@ -36,7 +36,7 @@ public class QueryLucene {
         Query query = new TermQuery(new Term("filename", "apache"));
         //执行查询
         //第一个参数是查询对象，第二个返回结果数量的最大值
-        TopDocs topDocs = indexSearcher.search(query, 10);
+        TopDocs topDocs = indexSearcher.search(query, 1);
         System.out.println(topDocs.totalHits);
 
         for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
