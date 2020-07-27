@@ -49,9 +49,6 @@ public class QueryLucene {
             System.out.println(document.get("content"));
             System.out.println(document.get("path"));
             System.out.println(document.get("size"));
-
         }
-
-
     }
 }
