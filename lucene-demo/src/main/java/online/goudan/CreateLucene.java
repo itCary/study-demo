@@ -7,6 +7,7 @@ import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.FSDirectory;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class CreateLucene {
         File indexFile = new File("index");
         System.out.println(indexFile.getAbsolutePath());
         FSDirectory directory = FSDirectory.open(indexFile.toPath());
-        IndexWriterConfig indexWriterConfig = new IndexWriterConfig();
+        IndexWriterConfig indexWriterConfig = new IndexWriterConfig(new IKAnalyzer());
         IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
 
         //要生成索引的文档的原始路引

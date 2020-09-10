@@ -76,6 +76,7 @@ public class AnalyzerDemo {
         TokenStream ts = analyzer.tokenStream("", reader);
         CharTermAttribute term = ts.getAttribute(CharTermAttribute.class);
         // 遍历分词数据
+        ts.reset();
         try {
             while (ts.incrementToken()) {
                 System.out.print(term.toString() + "|");
@@ -83,6 +84,7 @@ public class AnalyzerDemo {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            ts.close();
             reader.close();
         }
     }
