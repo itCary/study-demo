@@ -29,7 +29,7 @@ public class QueryLucene {
      */
     public static void main(String[] args) throws IOException {
         //
-        Directory indexDir = FSDirectory.open(new File("index").toPath());
+        Directory indexDir = FSDirectory.open(new File("lucene/index").toPath());
         IndexReader indexReader = DirectoryReader.open(indexDir);
         IndexSearcher indexSearcher = new IndexSearcher(indexReader);
         //创建查询对象

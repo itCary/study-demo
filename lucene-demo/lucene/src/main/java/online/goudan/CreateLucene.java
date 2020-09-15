@@ -31,14 +31,14 @@ public class CreateLucene {
      */
     public static void main(String[] args) throws IOException {
         //存放索引的文件夹
-        File indexFile = new File("index");
+        File indexFile = new File("lucene/index");
         System.out.println(indexFile.getAbsolutePath());
         FSDirectory directory = FSDirectory.open(indexFile.toPath());
         IndexWriterConfig indexWriterConfig = new IndexWriterConfig(new IKAnalyzer());
         IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
 
         //要生成索引的文档的原始路引
-        File dir = new File("searchsource");
+        File dir = new File("lucene/searchsource");
         for (File file : dir.listFiles()) {
             //文件名
             String fileName = file.getName();
