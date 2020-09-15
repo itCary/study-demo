@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/lucene/lucene.iml" filepath="$PROJECT_DIR$/lucene/lucene.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/lucene-demo.iml" filepath="$PROJECT_DIR$/.idea/lucene-demo.iml" />
     </modules>
   </component>
 </project>
