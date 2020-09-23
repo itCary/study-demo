@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/custom_proxy_demo/custom_proxy_demo.iml" filepath="$PROJECT_DIR$/custom_proxy_demo/custom_proxy_demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
     </modules>
   </component>
 </project>

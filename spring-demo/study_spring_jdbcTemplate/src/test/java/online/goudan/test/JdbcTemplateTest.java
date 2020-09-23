@@ -4,7 +4,9 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.sun.istack.internal.NotNull;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
+import io.reactivex.Scheduler;
 import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 import online.goudan.pojo.IUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -79,8 +81,13 @@ public class JdbcTemplateTest {
 
         Observable.fromArray(img)
                 .concatMap(s -> {
-                    return Observable.just(s+System.currentTimeMillis()).delay(2000, TimeUnit.MILLISECONDS);
-                }).subscribe(System.out::println);
+                    return Observable.just(s + System.currentTimeMillis()).delay(2000, TimeUnit.MILLISECONDS);
+                })
+                .observeOn(Schedulers.newThread())
+                .subscribe(s -> {
+                    Thread.sleep(2000);
+                    System.out.println(s);
+                });
 
         Thread.sleep(Integer.MAX_VALUE);
     }
