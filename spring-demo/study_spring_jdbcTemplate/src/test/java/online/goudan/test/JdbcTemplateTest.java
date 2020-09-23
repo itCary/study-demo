@@ -74,21 +74,4 @@ public class JdbcTemplateTest {
             System.out.println(IUser);
         }
     }
-
-    @Test
-    public void test04() throws InterruptedException {
-        String[] img = new String[]{"aaa", "bbbb", "dddd"};
-
-        Observable.fromArray(img)
-                .concatMap(s -> {
-                    return Observable.just(s + System.currentTimeMillis()).delay(2000, TimeUnit.MILLISECONDS);
-                })
-                .observeOn(Schedulers.newThread())
-                .subscribe(s -> {
-                    Thread.sleep(2000);
-                    System.out.println(s);
-                });
-
-        Thread.sleep(Integer.MAX_VALUE);
-    }
 }

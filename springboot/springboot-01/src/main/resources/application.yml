@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springboot_test
+    username: root
+    password: root
+
+  profiles:
+    active: 123,abc
+    #    active:
+    #      - 123
+    #      - abc
+  redis:
+    host: localhost
+    port: 6379
+mybatis:
+  type-aliases-package: online.goudan.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    online.goudan: debug
+    org.springframeword: info
+
+server:
+  port: 80
+
+
+
+
