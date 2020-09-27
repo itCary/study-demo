@@ -37,7 +37,8 @@ public class DateTest {
 
     @Test
     public void test03() {
-        System.out.printf("%010.1f%n", 732.14123d);
-        System.out.printf("%010.1f", 732.15123d);
+        System.out.printf("%010x%n", 732);
+        System.out.printf("%010x%n", 732);
+        System.out.printf("%06x",15);
     }
 }
