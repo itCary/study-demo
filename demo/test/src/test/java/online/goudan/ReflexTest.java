@@ -5,12 +5,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
  * @author 刘苟淡
- * @description
+ * @description 反射 api 练习
  * @date 2020/9/24 11:04
  */
 public class ReflexTest {
@@ -25,7 +24,7 @@ public class ReflexTest {
     }
 
     @Test
-    public void test01() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+    public void test01() throws Exception {
         Method[] declaredMethods = clazz.getDeclaredMethods();
         Field[] declaredFields = clazz.getDeclaredFields();
         System.out.println("------------field------------");
@@ -57,6 +56,11 @@ public class ReflexTest {
         say.invoke(person, "lajfoafjajfoaj o");
     }
 
+    /**
+     * 通过反射调用无参方法
+     *
+     * @throws Exception
+     */
     @Test
     public void test02() throws Exception {
         Method toString = clazz.getDeclaredMethod("toString");
@@ -64,6 +68,11 @@ public class ReflexTest {
         System.out.println(invoke.getClass());
     }
 
+    /**
+     * 通过反射调用有参方法
+     *
+     * @throws Exception
+     */
     @Test
     public void test03() throws Exception {
         Method say = clazz.getDeclaredMethod("say", String.class);
@@ -73,11 +82,9 @@ public class ReflexTest {
 
     /**
      * 获取所有的成员变量
-     *
-     * @throws Exception
      */
     @Test
-    public void test04() throws Exception {
+    public void test04() {
         Field[] fields = clazz.getDeclaredFields();
         System.out.println(fields.length);
         for (Field field : fields) {
@@ -85,6 +92,9 @@ public class ReflexTest {
         }
     }
 
+    /**
+     * 获取方法
+     */
     @Test
     public void test05() {
         Method[] methods = clazz.getMethods();

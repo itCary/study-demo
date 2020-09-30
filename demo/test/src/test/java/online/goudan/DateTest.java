@@ -18,6 +18,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class DateTest {
 
+    /**
+     * 使用 localdatetime 对日期进行格式化
+     */
     @Test
     public void test01() {
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -25,20 +28,15 @@ public class DateTest {
         System.out.println(chinaTime);
     }
 
-    @Test
-    public void test02() throws InterruptedException {
-        Random random = new Random();
-        Observable.interval(0, 1000, TimeUnit.MILLISECONDS)
-                .subscribe(t -> {
-                    System.out.println(System.currentTimeMillis() + ", " + random.nextInt(2000));
-                });
-        Thread.sleep(Integer.MAX_VALUE);
-    }
 
+    /**
+     * 练习 String.format()
+     */
     @Test
-    public void test03() {
+    public void test02() {
         System.out.printf("%010x%n", 732);
         System.out.printf("%010x%n", 732);
-        System.out.printf("%06x",15);
+        System.out.printf("%06x%n", 15);
+        System.out.printf("progress:%06.2f%%%n",0.0253434);
     }
 }

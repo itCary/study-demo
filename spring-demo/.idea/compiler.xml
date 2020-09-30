@@ -14,10 +14,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="study_spring_aop" target="8" />
-      <module name="study_spring_ioc" target="8" />
-      <module name="study_spring_ioc_anno" target="8" />
-      <module name="study_spring_jdbcTemplate" target="8" />
+      <module name="study_spring_aop" target="1.5" />
+      <module name="study_spring_ioc" target="1.5" />
+      <module name="study_spring_ioc_anno" target="1.5" />
+      <module name="study_spring_jdbcTemplate" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
