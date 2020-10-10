@@ -11,3 +11,6 @@
 
 #### 学习的技术点
 * lucene 全文检索
+* springboot
+* Reflex(反射)
+* 一些算法和设计模式
