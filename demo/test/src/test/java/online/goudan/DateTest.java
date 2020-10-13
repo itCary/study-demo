@@ -37,6 +37,6 @@ public class DateTest {
         System.out.printf("%010x%n", 732);
         System.out.printf("%010x%n", 732);
         System.out.printf("%06x%n", 15);
-        System.out.printf("progress:%06.2f%%%n",0.0253434);
+        System.out.printf("progress:%06.2f%%%n", 0.0253434);
     }
 }

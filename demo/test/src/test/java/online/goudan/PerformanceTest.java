@@ -92,36 +92,5 @@ public class PerformanceTest {
         System.out.printf("sum=%d", sum);
     }
 
-    @Test
-    public void test03() throws Exception {
-        ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(20, 20, 5000, TimeUnit.MILLISECONDS,
-                new LinkedBlockingDeque<Runnable>(), new ThreadFactory() {
-            int threadNum = 1;
 
-            @Override
-            public Thread newThread(Runnable r) {
-                Thread thread = new Thread(r);
-                thread.setName("myThread" + threadNum);
-                threadNum++;
-                return thread;
-            }
-        });
-        for (int i = 0; i < 30; i++) {
-            poolExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    while (true) {
-                        try {
-                            Thread.sleep(2000L);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println(Thread.currentThread().getName());
-                    }
-                }
-            });
-        }
-        Thread.sleep(Integer.MAX_VALUE);
-
-    }
 }
