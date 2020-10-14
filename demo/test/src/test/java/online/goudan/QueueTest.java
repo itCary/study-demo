@@ -1,5 +1,6 @@
 package online.goudan;
 
+import online.goudan.domain.Car;
 import org.junit.Test;
 
 import java.util.concurrent.ArrayBlockingQueue;
@@ -10,6 +11,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  * @desc 队列的使用
  */
 public class QueueTest {
+
     /**
      * 有界队列的使用
      */
