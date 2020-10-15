@@ -24,7 +24,6 @@ public class _04Sort各种排序算法 {
 //        arr = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
         System.out.printf("排序前:%s%n", Arrays.toString(arr));
         sum = 0;
-
         n = 10000000;
         arr = new int[n];
         Random random = new Random();
@@ -35,7 +34,7 @@ public class _04Sort各种排序算法 {
 
 
     /**
-     * 冒泡排序
+     * 冒泡排序(Bubble Sort)
      * 原理:
      * （1）比较前后相邻的二个数据，如果前面数据大于后面的数据，就将这二个数据交换。
      * （2）这样对数组的第 0 个数据到 N-1 个数据进行一次遍历后，最大的一个数据就“沉”到数组第
@@ -58,7 +57,7 @@ public class _04Sort各种排序算法 {
     }
 
     /**
-     * 插入排序
+     * 插入排序(Insert Sort)
      * 原理:
      * 通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应的位置并插入。
      */
@@ -77,14 +76,14 @@ public class _04Sort各种排序算法 {
     }
 
     /**
-     * 快速排序算法
+     * 快速排序(Quick Sort)
      * 原理:
      * 选择一个关键值作为基准值。比基准值小的都在左边序列（一般是无序的），
      * 比基准值大的都在右边（一般是无序的）。一般选择序列的第一个元素。
      * 操作:
      * 从右往左找,找到比基准值小的索引,从左往右找,找到比基准值大的索引,然后交换位置,
      * 交换完成后,再接着从右往左找,找到比基准值小的索引,从左往右找,找到比基准值大的索引,交换位置...。
-     * 最后,将基准值放在中间,再用递归分别排基准左右边的
+     * 最后,将基准值放在中间,再用递归分别排序基准左右边的
      */
     @Test
     public void quickSort() {
@@ -107,31 +106,7 @@ public class _04Sort各种排序算法 {
      */
     @Test
     public void shellSort() {
-        Map<Integer, int[]> map = new HashMap();
-        for (int i = 0; i < 10; i++) {
-            map.put(i, new int[n / 10]);
-        }
-        for (int i = 0; i < n; i++) {
-            map.get(i % 10)[i / 10] = arr[i];
-        }
 
-
-        Set<Integer> keySet = map.keySet();
-        for (Integer integer : keySet) {
-            _04Util.shellSort(map.get(integer), n / 10 / 2);
-        }
-
-        for (Integer integer : keySet) {
-            int[] add = map.get(integer);
-            int length = add.length;
-            for (int i = 0; i < length; i++) {
-                arr[i * 10 + integer] = add[i];
-            }
-        }
-
-        _04Util.shellSort(arr, n / 2);
-
-        /*
         int step = n / 2;
         int index = step;
         while (step > 0) {
@@ -149,11 +124,72 @@ public class _04Sort各种排序算法 {
                 index++;
             }
             step /= 2;
-        }*/
+        }
 
        /* //使用递归的实现
         _04Util.shellSort(arr, n / 2);*/
 
+    }
+
+    /**
+     * 归并排序（Merge Sort)
+     * 原理：
+     * 将两个（或两个以上）有序表合并成一个新的有序表，即把待排序序列
+     * 分为若干个子序列，每个子序列是有序的。然后再把有序子序列合并为整体有序序列。
+     */
+    @Test
+    public void mergeSort() {
+        mergeSort(arr, 0, n - 1);
+    }
+
+    /**
+     * 归并排序递归实现
+     *
+     * @param a
+     * @param left
+     * @param right
+     */
+    public static void mergeSort(int[] a, int left, int right) {
+        if (left < right) {
+            int middle = (left + right) / 2;//分解
+            mergeSort(a, left, middle);//治理
+            mergeSort(a, middle + 1, right);
+            merge(a, left, middle, right);//合并
+        }
+    }
+
+    /**
+     * 合并
+     *
+     * @param a
+     * @param left
+     * @param middle
+     * @param right
+     */
+    private static void merge(int[] a, int left, int middle, int right) {
+        int[] tmpArray = new int[a.length];
+        int rightStart = middle + 1;
+        int tmp = left;
+        int third = left;
+        //比较两个小数组相应下标位置的数组大小，小的先放进新数组
+        while (left <= middle && rightStart <= right) {
+            if (a[left] <= a[rightStart]) {
+                tmpArray[third++] = a[left++];
+            } else {
+                tmpArray[third++] = a[rightStart++];
+            }
+        }
+        //如果左边还有数据需要拷贝，把左边数组剩下的拷贝到新数组
+        while (left <= middle) {
+            tmpArray[third++] = a[left++];
+        }
+        //如果右边还有数据......
+        while (rightStart <= right) {
+            tmpArray[third++] = a[rightStart++];
+        }
+        while (tmp <= right) {
+            a[tmp] = tmpArray[tmp++];
+        }
     }
 
 
