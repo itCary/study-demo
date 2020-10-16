@@ -61,6 +61,7 @@ public class _04Util {
 
     /**
      * 希尔排序(递归)
+     *
      * @param arr
      * @param step
      */
@@ -82,4 +83,65 @@ public class _04Util {
         }
         shellSort(arr, step / 2);
     }
+
+
+    /**
+     * 归并排序
+     * 分解
+     *
+     * @param arr   待排序数组
+     * @param left  0
+     * @param right arr.length - 1
+     */
+    public static void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            //分解
+            int middle = (left + right) / 2;
+            //治理
+            mergeSort(arr, left, middle);
+            mergeSort(arr, middle + 1, right);
+            //合并
+            mSort(arr, left, middle, right);
+        }
+    }
+
+    /**
+     * 归并排序
+     * 合并
+     *
+     * @param arr
+     * @param left
+     * @param middle
+     * @param right
+     */
+    private static void mSort(int[] arr, int left, int middle, int right) {
+        int[] tempArr = new int[arr.length];
+        int leftIndex = left;
+        int rightIndex = middle + 1;
+        int index = left;
+        while (leftIndex <= middle && rightIndex <= right) {
+            if (arr[leftIndex] > arr[rightIndex]) {
+                tempArr[index++] = arr[rightIndex++];
+            } else {
+                tempArr[index++] = arr[leftIndex++];
+            }
+        }
+
+        //如果左边还有数据未添加到中间数组
+        while (leftIndex <= middle) {
+            tempArr[index++] = arr[leftIndex++];
+        }
+        //如果右边还有数据未添加到中间数组
+        while (rightIndex <= right) {
+            tempArr[index++] = arr[rightIndex++];
+        }
+
+        //将这段有序的数组合并到
+        while (left <= right) {
+            arr[left] = tempArr[left++];
+        }
+
+    }
+
+
 }

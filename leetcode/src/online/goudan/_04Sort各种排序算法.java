@@ -24,11 +24,12 @@ public class _04Sort各种排序算法 {
 //        arr = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
         System.out.printf("排序前:%s%n", Arrays.toString(arr));
         sum = 0;
-        n = 10000000;
+        n = 1000000;
         arr = new int[n];
         Random random = new Random();
         for (int i = 0; i < n; i++) {
             arr[i] = random.nextInt(n);
+//            arr[i] = i;
         }
     }
 
@@ -139,56 +140,46 @@ public class _04Sort各种排序算法 {
      */
     @Test
     public void mergeSort() {
-        mergeSort(arr, 0, n - 1);
+        _04Util.mergeSort(arr, 0, n - 1);
     }
 
     /**
-     * 归并排序递归实现
-     *
-     * @param a
-     * @param left
-     * @param right
+     * 桶排序(Bucket Sort)
+     * 原理:
+     * 把数组 arr 划分为 n 个大小相同子区间（桶），每个子区间各自排序，最
+     * 后合并。计数排序是桶排序的一种特殊情况，可以把计数排序当成每个桶里只有一个元素的情况。
+     * 操作:
+     * 1.找出待排序数组中的最大值 max、最小值 min
+     * 2.我们使用 动态数组 ArrayList 作为桶，桶里放的元素也用 ArrayList 存储。桶的数量为(max-min)/arr.length+1
+     * 3.遍历数组 arr，计算每个元素 arr[i] 放的桶
+     * 4.每个桶各自排序
      */
-    public static void mergeSort(int[] a, int left, int right) {
-        if (left < right) {
-            int middle = (left + right) / 2;//分解
-            mergeSort(a, left, middle);//治理
-            mergeSort(a, middle + 1, right);
-            merge(a, left, middle, right);//合并
+    @Test
+    public void bucketSort() {
+        int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+        for (int i = 0; i < n; i++) {
+            max = Math.max(max, arr[i]);
+            min = Math.min(min, arr[i]);
         }
-    }
+        int bucketNum = (max - min) / n + 1;
+        List<ArrayList<Integer>> bucket = new ArrayList<>(bucketNum);
+        for (int i = 0; i < bucketNum; i++) {
+            bucket.add(new ArrayList<>());
+        }
+        for (int i = 0; i < n; i++) {
+            int index = (arr[i] - min) / n;
+            bucket.get(index).add(arr[i]);
+        }
 
-    /**
-     * 合并
-     *
-     * @param a
-     * @param left
-     * @param middle
-     * @param right
-     */
-    private static void merge(int[] a, int left, int middle, int right) {
-        int[] tmpArray = new int[a.length];
-        int rightStart = middle + 1;
-        int tmp = left;
-        int third = left;
-        //比较两个小数组相应下标位置的数组大小，小的先放进新数组
-        while (left <= middle && rightStart <= right) {
-            if (a[left] <= a[rightStart]) {
-                tmpArray[third++] = a[left++];
-            } else {
-                tmpArray[third++] = a[rightStart++];
+        for (int i = 0; i < bucketNum; i++) {
+            Collections.sort(bucket.get(i));
+        }
+
+        int dd = 0;
+        for (int i = 0; i < bucketNum; i++) {
+            for (int j = 0; j < bucket.get(i).size(); j++) {
+                arr[dd++] = bucket.get(i).get(j);
             }
-        }
-        //如果左边还有数据需要拷贝，把左边数组剩下的拷贝到新数组
-        while (left <= middle) {
-            tmpArray[third++] = a[left++];
-        }
-        //如果右边还有数据......
-        while (rightStart <= right) {
-            tmpArray[third++] = a[rightStart++];
-        }
-        while (tmp <= right) {
-            a[tmp] = tmpArray[tmp++];
         }
     }
 
