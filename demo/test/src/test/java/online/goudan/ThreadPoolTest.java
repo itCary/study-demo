@@ -1,10 +1,9 @@
 package online.goudan;
 
-import javafx.concurrent.Worker;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Queue;
 import java.util.concurrent.*;
 
 /**
@@ -15,11 +14,13 @@ import java.util.concurrent.*;
 public class ThreadPoolTest {
 
     private ThreadPoolExecutor poolExecutor;
+    private long startTime;
+    private long endTime;
 
     @Before
     public void init() throws Exception {
-        poolExecutor = new ThreadPoolExecutor(3, 20, 10, TimeUnit.MILLISECONDS,
-                new ArrayBlockingQueue<Runnable>(300), new ThreadFactory() {
+        poolExecutor = new ThreadPoolExecutor(20, 10000, 10, TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<>(1000), new ThreadFactory() {
             int threadNum = 1;
 
             @Override
@@ -30,12 +31,22 @@ public class ThreadPoolTest {
                 return thread;
             }
         });
+        boolean b = poolExecutor.prestartCoreThread();
+        if (b) {
+            startTime = System.currentTimeMillis();
+        }
+    }
+
+    @After
+    public void destroy() {
+        endTime = System.currentTimeMillis();
+        System.out.printf("耗费时间：%.2fs%n", (endTime - startTime) / 1000d);
     }
 
     @Test
     public void test01() throws Exception {
 
-        for (int i = 0; i < 300; i++) {
+        for (int i = 0; i < 3000; i++) {
             poolExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -48,14 +59,13 @@ public class ThreadPoolTest {
                 }
             });
         }
-        Thread.sleep(Integer.MAX_VALUE);
-
     }
 
     private volatile boolean flag;
 
     /**
      * volatile 只能保证可见性,不能保证原子性和有序性
+     *
      * @throws Exception
      */
     @Test
@@ -86,5 +96,37 @@ public class ThreadPoolTest {
         Thread.sleep(Integer.MAX_VALUE);
     }
 
+    @Test
+    public void test03() throws Exception {
+        for (int i = 0; i < 100000; i++) {
+            new Thread(() -> {
+                sum += 1;
+            }).start();
+        }
+        System.out.printf("sum:%d%n", sum);
+    }
 
+    int sum = 0;
+
+    @Test
+    public void test04() {
+
+        for (int i = 0; i < 100000; i++) {
+            poolExecutor.execute(() -> {
+                sum += 1;
+            });
+        }
+
+        System.out.printf("sum:%d%n", sum);
+
+    }
+
+    @Test
+    public void test05() {
+        for (int i = 0; i < 100000; i++) {
+            sum += 1;
+        }
+        System.out.printf("sum:%d%n", sum);
+
+    }
 }
