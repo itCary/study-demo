@@ -1,6 +1,8 @@
 package online.goudan.domain;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 /**
  * @author 刘苟淡
@@ -15,16 +17,37 @@ public class Car implements Cloneable, Serializable {
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return super.clone();
+        Class<? extends Car> clazz = this.getClass();
+        Car car = null;
+        try {
+            car = clazz.newInstance();
+            Field[] declaredFields = clazz.getDeclaredFields();
+            for (Field field : declaredFields) {
+                if (!Modifier.isStatic(field.getModifiers())) {
+                    field.setAccessible(true);
+                    if ("color".equals(field.getName())) {
+                        field.set(car, "黑色");
+                        continue;
+                    }
+                    Object o = field.get(this);
+                    field.set(car, o);
+
+                }
+            }
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return car;
     }
-/*
+
     @Override
     public String toString() {
         return "Car{" +
                 "color='" + color + '\'' +
                 ", name='" + name + '\'' +
-                '}';
-    }*/
+                '}' + "@" + Integer.toHexString(hashCode());
+
+    }
 
     public String getColor() {
         return color;

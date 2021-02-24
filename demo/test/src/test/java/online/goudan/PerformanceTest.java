@@ -2,10 +2,6 @@ package online.goudan;
 
 import org.junit.Test;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.concurrent.*;
-
 /**
  * @author 刘苟淡
  * @description
@@ -17,6 +13,7 @@ public class PerformanceTest {
      */
     @Test
     public void test01() {
+
         //来点计算，用处不大。
         long sum = -1;
         //循环次数，有点大哦，自己悠着点调
@@ -91,6 +88,4 @@ public class PerformanceTest {
         System.out.printf("proportion:%f%n", (ifeTime - ifsTime) / (double) (triETime - ifeTime));
         System.out.printf("sum=%d", sum);
     }
-
-
 }

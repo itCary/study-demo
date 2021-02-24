@@ -4,8 +4,11 @@ import online.goudan.domain.Person;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /**
  * @author 刘苟淡
@@ -62,6 +65,7 @@ public class ReflexTest {
      * @throws Exception
      */
     @Test
+    @SuppressWarnings("all")
     public void test02() throws Exception {
         Method toString = clazz.getDeclaredMethod("toString");
         Object invoke = toString.invoke(person);
@@ -109,5 +113,24 @@ public class ReflexTest {
         for (Method declaredMethod : declaredMethods) {
             System.out.println(declaredMethod);
         }
+    }
+
+    @Test
+    public void test06() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Class<ReflexTest> clazz = ReflexTest.class;
+        Method method = clazz.getDeclaredMethod("test02", null);
+        Object invoke = method.invoke(this, null);
+        System.out.println(invoke);
+    }
+
+    @Test
+    public void test07() throws Exception {
+        Method[] methods = clazz.getDeclaredMethods();
+        Arrays.stream(methods).forEach(method -> {
+            Annotation[] annotations = method.getAnnotations();
+            if (annotations.length > 0) {
+                Arrays.stream(annotations).forEach(annotation -> System.out.println(annotation.annotationType().getSimpleName()));
+            }
+        });
     }
 }
