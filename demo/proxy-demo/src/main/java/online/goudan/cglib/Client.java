@@ -19,13 +19,22 @@ public class Client {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(Person.class);
         enhancer.setCallback(new MethodInterceptor() {
+            /**
+             * 代理逻辑方法
+             * @param obj 代理对象
+             * @param method 方法
+             * @param args 方法参数
+             * @param proxy 方法代理
+             * @return 代理逻辑返回
+             * @throws Throwable 异常
+             */
             @Override
             public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
                 Annotation[] annotations = method.getAnnotations();
                 if (annotations.length > 0) {
                     if (Arrays.stream(annotations)
                             .map(annotation -> annotation.annotationType().getSimpleName())
-                            .filter(s -> "Deprecated".equals(s))
+                            .filter("Deprecated"::equals)
                             .toArray()
                             .length > 0) {
                         System.out.println("before");
@@ -35,7 +44,6 @@ public class Client {
                     }
                 }
                 return proxy.invokeSuper(obj, args);
-
             }
         });
         Person person = (Person) enhancer.create();
