@@ -6,7 +6,7 @@ package online.goudan.cglib;
  * @desc 无接口的类
  */
 public class Person {
-    @SuppressWarnings("all")
+    @Deprecated
     public void sayHello(){
         System.out.println("hello");
     }

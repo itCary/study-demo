@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class FileTimeChange {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("请输入文件的路径地址：");
+        System.out.println("请输入文件（包含文件夹）的路径地址：");
         String fileDir = scanner.nextLine();
         File rootFile = new File(fileDir);
         if (rootFile.exists()) {
@@ -37,9 +37,11 @@ public class FileTimeChange {
         try {
             if (!file.exists()) {
                 if (!file.getParentFile().exists()) {
-                    System.out.printf("文件夹生成%s%n", file.getParentFile().mkdirs() ? "成功" : "失败");
+                    System.out.printf("%n创建目录[%s]--%s--%n", file.getParent().replace(rootDir.getPath()+"/", ""), file.getParentFile().mkdirs() ? "成功" : "失败");
                 }
-                System.out.printf("文件生成%s%n", file.createNewFile() ? "成功" : "失败");
+                System.out.printf("创建文件【%s】--%s--%n", file.getName(), file.createNewFile() ? "成功" : "失败");
+            } else {
+                System.out.printf("文件【%s】已存在", file.getName());
             }
 
             BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(cFile));

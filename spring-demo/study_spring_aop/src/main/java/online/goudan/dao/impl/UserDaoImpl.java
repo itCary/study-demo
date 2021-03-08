@@ -13,7 +13,7 @@ public class UserDaoImpl implements UserDao {
         System.out.println("save running............");
     }
 
-    public void init(){
+    public void init() {
         System.out.println("init running.......");
     }
 

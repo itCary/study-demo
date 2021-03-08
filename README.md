@@ -14,3 +14,5 @@
 * springboot
 * Reflex(反射)
 * 一些算法和设计模式
+* jdk和cglib实现的动态代理
+

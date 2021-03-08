@@ -11,9 +11,9 @@ import java.lang.reflect.Proxy;
  */
 public class Client {
     public static void main(String[] args) {
-        Man man = new Man();
-        Behavior proxyInstance = (Behavior) Proxy.newProxyInstance(man.getClass().getClassLoader(),
-                man.getClass().getInterfaces(),
+//        Man man = new Man();
+        Behavior proxyInstance = (Behavior) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),
+                new Class[]{Behavior.class},
                 new InvocationHandler() {
 
                     /**
@@ -27,10 +27,8 @@ public class Client {
                     @Override
                     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                         System.out.println(method.getName());
-                        Object o = method.invoke(man, args);
-                        System.out.println(o);
-                        return o;
-
+                        System.out.println("jaofjaofjqojq");
+                        return null;
                     }
                 });
 
