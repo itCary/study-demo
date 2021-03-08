@@ -1,7 +1,6 @@
 package online.goudan.mapper;
 
 import online.goudan.pojo.TbUser;
-import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
 
 /**

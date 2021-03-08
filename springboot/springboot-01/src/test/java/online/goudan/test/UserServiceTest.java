@@ -29,6 +29,7 @@ public class UserServiceTest {
     @Test
     public void test01() {
         TbUser tbUser = new TbUser();
+        tbUser.setId(19L);
         tbUser.setUserName("test");
         tbUser.setName("test");
         tbUser.setPassword("123456");

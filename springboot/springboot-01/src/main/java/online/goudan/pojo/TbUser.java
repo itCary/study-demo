@@ -1,8 +1,10 @@
 package online.goudan.pojo;
 
 import lombok.Data;
+import tk.mybatis.mapper.annotation.ColumnType;
 import tk.mybatis.mapper.annotation.KeySql;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
@@ -18,6 +20,7 @@ public class TbUser {
     @Id
     @KeySql(useGeneratedKeys = true)
     private Long id;
+    @Column(name = "user_name")
     private String userName;
     private String password;
     private String name;
@@ -28,7 +31,7 @@ public class TbUser {
 
     private Date birthday;
 
+    private String note;
     private Date created;
 
-    private String note;
 }
