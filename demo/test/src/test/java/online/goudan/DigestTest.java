@@ -4,9 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -58,5 +58,15 @@ public class DigestTest {
         byte[] bytes = hexBinaryAdapter.unmarshal("c60e784027c853f845c09f2e6bb14b3a");
         System.out.println(new String(bytes));
 
+    }
+
+    @Test
+    public void test03() {
+        List<String> list = new ArrayList<>();
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        list.add("d");
+        System.out.println(list);
     }
 }
