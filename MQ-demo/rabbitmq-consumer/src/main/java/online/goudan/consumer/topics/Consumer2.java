@@ -1,4 +1,4 @@
-package online.goudan.consumer.pub_sub;
+package online.goudan.consumer.topics;
 
 import com.rabbitmq.client.*;
 import online.goudan.util.ConnectionUtil;
@@ -8,8 +8,8 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @author chenglongliu
- * @date 2021/3/12 17:09
- * @desc pubsub模式的消费者
+ * @date 2021/3/14 22:37
+ * @desc 通配符模式下的消费者
  */
 public class Consumer2 {
     public static void main(String[] args) throws IOException, TimeoutException {
@@ -17,16 +17,22 @@ public class Consumer2 {
 
         Channel channel = connection.createChannel();
 
-       Consumer consumer = new DefaultConsumer(channel) {
+        String exchangeName = "test_topic";
+        channel.exchangeDeclare(exchangeName, BuiltinExchangeType.TOPIC, true, false, false, null);
+
+        String queueName2 = "test_topic_queue2";
+        channel.queueDeclare(queueName2, true, false, false, null);
+
+        Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-                System.out.println("body: " + new String(body));
-                System.out.println("将日志保存到数据库");
+                System.out.println(new String(body));
+
+                System.out.println("打印到控制台");
             }
         };
-        String queueName2 = "test_fanout_queue2";
-        channel.basicConsume(queueName2, true, consumer);
 
+        channel.basicConsume(queueName2, true, consumer);
 
     }
 }
