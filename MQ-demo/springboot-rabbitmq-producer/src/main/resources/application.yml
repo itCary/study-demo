@@ -1,0 +1,7 @@
+spring:
+  rabbitmq:
+    host: 172.16.239.131
+    username: goudan
+    password: goudan125
+    virtual-host: piaoxianglou
+    port: 5672
