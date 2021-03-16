@@ -17,8 +17,7 @@ public class ConsumerTest {
 
     @Test
     public void testSpringQueue() {
-        boolean flag = true;
-        while (flag) {
+        while (true) {
 
         }
     }

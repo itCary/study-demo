@@ -17,10 +17,19 @@
                                port="${rabbitmq.port}"
                                username="${rabbitmq.username}"
                                password="${rabbitmq.password}"
-                               virtual-host="${rabbitmq.virtual-host}"/>
+                               virtual-host="${rabbitmq.virtual-host}"
+                               publisher-returns="true"
+                               publisher-confirms="true"/>
     <!--定义管理交换机、队列-->
     <rabbit:admin connection-factory="connectionFactory"/>
 
     <!--定义rabbitTemplate对象操作可以在代码中方便发送消息-->
     <rabbit:template id="rabbitTemplate" connection-factory="connectionFactory"/>
+
+    <rabbit:queue id="test_queue_confirm" name="test_queue_confirm" auto-declare="true"/>
+    <rabbit:direct-exchange name="test_exchange_confirm" auto-declare="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="test_queue_confirm" key="confirm"/>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
 </beans>

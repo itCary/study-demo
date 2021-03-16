@@ -19,19 +19,19 @@
                                password="${rabbitmq.password}"
                                virtual-host="${rabbitmq.virtual-host}"/>
 
-    <bean id="springQueueListener" class="online.goudan.producer.rabbitmq.listener.SpringQueueListener"/>
-    <bean id="fanoutListener1" class="online.goudan.producer.rabbitmq.listener.FanoutListener1"/>
-    <bean id="fanoutListener2" class="online.goudan.producer.rabbitmq.listener.FanoutListener2"/>
-    <bean id="topicListenerStar" class="online.goudan.producer.rabbitmq.listener.TopicListenerStar"/>
-    <bean id="topicListenerWell" class="online.goudan.producer.rabbitmq.listener.TopicListenerWell"/>
-    <bean id="topicListenerWell2" class="online.goudan.producer.rabbitmq.listener.TopicListenerWell2"/>
+    <context:component-scan base-package="online.goudan.producer.rabbitmq.listener" />
 
-    <rabbit:listener-container connection-factory="connectionFactory" auto-declare="true">
-        <rabbit:listener ref="springQueueListener" queue-names="spring_queue"/>
-        <rabbit:listener ref="fanoutListener1" queue-names="spring_fanout_queue_1"/>
-        <rabbit:listener ref="fanoutListener2" queue-names="spring_fanout_queue_2"/>
-        <rabbit:listener ref="topicListenerStar" queue-names="spring_topic_queue_star"/>
-        <rabbit:listener ref="topicListenerWell" queue-names="spring_topic_queue_well"/>
-        <rabbit:listener ref="topicListenerWell2" queue-names="spring_topic_queue_well2"/>
+    <!-- prefetch = n,表示消费端每次从mq拉取n条消息，直到手动确认消费后才拉取下n条-->
+    <rabbit:listener-container connection-factory="connectionFactory" acknowledge="manual" prefetch="1">
+<!--        <rabbit:listener ref="ackListener" queue-names="test_queue_confirm"/>-->
+        <rabbit:listener ref="qosListener" queue-names="test_queue_confirm"/>
+        <rabbit:listener ref="qosListener" queue-names="test_queue_confirm"/>
+        <rabbit:listener ref="qosListener" queue-names="test_queue_confirm"/>
+        <rabbit:listener ref="qosListener" queue-names="test_queue_confirm"/>
+        <rabbit:listener ref="qosListener" queue-names="test_queue_confirm"/>
+        <rabbit:listener ref="qosListener" queue-names="test_queue_confirm"/>
+        <rabbit:listener ref="qosListener" queue-names="test_queue_confirm"/>
+        <rabbit:listener ref="qosListener" queue-names="test_queue_confirm"/>
+        <rabbit:listener ref="qosListener" queue-names="test_queue_confirm"/>
     </rabbit:listener-container>
 </beans>
