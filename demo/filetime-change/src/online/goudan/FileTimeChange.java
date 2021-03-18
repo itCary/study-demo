@@ -15,7 +15,10 @@ public class FileTimeChange {
         String fileDir = scanner.nextLine();
         File rootFile = new File(fileDir);
         if (rootFile.exists()) {
+            long startTime = System.currentTimeMillis();
             file2file(rootFile, rootFile.getParentFile());
+            long endTime = System.currentTimeMillis();
+            System.out.printf("总共用时：%ss", (endTime - startTime) / 1000);
         }
     }
 
@@ -37,7 +40,7 @@ public class FileTimeChange {
         try {
             if (!file.exists()) {
                 if (!file.getParentFile().exists()) {
-                    System.out.printf("%n创建目录[%s]--%s--%n", file.getParent().replace(rootDir.getPath()+"/", ""), file.getParentFile().mkdirs() ? "成功" : "失败");
+                    System.out.printf("%n创建目录[%s]--%s--%n", file.getParent().replace(rootDir.getPath() + "/", ""), file.getParentFile().mkdirs() ? "成功" : "失败");
                 }
                 System.out.printf("创建文件【%s】--%s--%n", file.getName(), file.createNewFile() ? "成功" : "失败");
             } else {
