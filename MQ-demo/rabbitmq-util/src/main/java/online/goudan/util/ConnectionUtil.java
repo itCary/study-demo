@@ -12,7 +12,7 @@ import java.util.concurrent.TimeoutException;
  * @desc 获取connection的封装
  */
 public class ConnectionUtil {
-    private static String host = "172.16.239.131";
+    private static String host = "172.16.239.130";
     private static int port = 5672;
     private static String username = "goudan";
     private static String password = "goudan125";
