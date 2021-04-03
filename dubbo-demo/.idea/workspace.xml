@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1313068a-cb32-400a-8c29-d070313c41b2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../demo/test/src/test/java/online/goudan/DigestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/test/src/test/java/online/goudan/DigestTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dubbo-consumer/src/main/java/online/goudan/service/HelloService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dubbo-consumer/src/main/java/online/goudan/service/HelloService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springboot/springboot-01/springboot-01.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../springboot/springboot-01/springboot-01.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="$MAVEN_REPOSITORY$" />
+        <option name="mavenHome" value="/usr/local/apache-maven-3.6.0" />
+        <option name="userSettingsFile" value="/usr/local/apache-maven-3.6.0/conf/settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1pSMJPHKf4CQKJAyNyPTXJeSsgE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/dubbo-provider/src/main/resources/applicationContext-service.xml" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/dubbo-provider/src/main/resources" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dubbo-provider/src/main/resources" />
+      <recent name="$PROJECT_DIR$/dubbo-consumer/src/main/resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="online.goudan.service" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dubbo-consumer/src" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1313068a-cb32-400a-8c29-d070313c41b2" name="Default Changelist" comment="" />
+      <created>1615171967923</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615171967923</updated>
+      <workItem from="1615171968956" duration="6976000" />
+      <workItem from="1615374108751" duration="13000" />
+      <workItem from="1615426368581" duration="2049000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1693" y="-74" key="#Project_Structure" timestamp="1615172130576">
+      <screen x="-1920" y="-74" width="1920" height="975" />
+    </state>
+    <state x="-1693" y="-74" key="#Project_Structure/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615172130576" />
+    <state x="-1500" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615187819941">
+      <screen x="-1920" y="-74" width="1920" height="975" />
+    </state>
+    <state x="-1500" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615187819941" />
+    <state x="-1295" y="225" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1615172184670">
+      <screen x="-1920" y="-74" width="1920" height="975" />
+    </state>
+    <state x="-1295" y="225" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615172184670" />
+    <state x="-1194" y="61" key="#com.intellij.ide.util.MemberChooser" timestamp="1615172792234">
+      <screen x="-1920" y="-74" width="1920" height="975" />
+    </state>
+    <state x="-1194" y="61" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615172792234" />
+    <state width="1868" height="189" key="GridCell.Tab.0.bottom" timestamp="1615280475430">
+      <screen x="-1920" y="-74" width="1920" height="975" />
+    </state>
+    <state width="1868" height="189" key="GridCell.Tab.0.bottom/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615280475430" />
+    <state width="1868" height="189" key="GridCell.Tab.0.center" timestamp="1615280475429">
+      <screen x="-1920" y="-74" width="1920" height="975" />
+    </state>
+    <state width="1868" height="189" key="GridCell.Tab.0.center/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615280475429" />
+    <state width="1868" height="189" key="GridCell.Tab.0.left" timestamp="1615280475429">
+      <screen x="-1920" y="-74" width="1920" height="975" />
+    </state>
+    <state width="1868" height="189" key="GridCell.Tab.0.left/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615280475429" />
+    <state width="1868" height="189" key="GridCell.Tab.0.right" timestamp="1615280475429">
+      <screen x="-1920" y="-74" width="1920" height="975" />
+    </state>
+    <state width="1868" height="189" key="GridCell.Tab.0.right/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615280475429" />
+    <state x="-1561" y="-35" key="SettingsEditor" timestamp="1615172174491">
+      <screen x="-1920" y="-74" width="1920" height="975" />
+    </state>
+    <state x="-1561" y="-35" key="SettingsEditor/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615172174491" />
+    <state x="-1857" y="-50" key="new project wizard" timestamp="1615173369092">
+      <screen x="-1920" y="-74" width="1920" height="975" />
+    </state>
+    <state x="-1857" y="-50" key="new project wizard/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615173369092" />
+  </component>
+</project>

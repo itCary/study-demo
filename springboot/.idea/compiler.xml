@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springboog-crawler-zxcs" />
+        <module name="springboot-01" />
+        <module name="springboot-AutoFillIn" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="springboog-crawler-zxcs" target="1.8" />
+      <module name="springboot-01" target="6" />
+      <module name="springboot-AutoFillIn" target="1.8" />
+      <module name="springboot-crawler-zxcs" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springboog-crawler-zxcs" options="-parameters" />
+      <module name="springboot-01" options="-parameters" />
+      <module name="springboot-AutoFillIn" options="-parameters" />
+      <module name="springboot-crawler-zxcs" options="-parameters" />
+    </option>
+  </component>
+</project>

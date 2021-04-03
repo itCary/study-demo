@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/study_spring_aop/study_spring_aop.iml" filepath="$PROJECT_DIR$/study_spring_aop/study_spring_aop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study_spring_ioc/study_spring_ioc.iml" filepath="$PROJECT_DIR$/study_spring_ioc/study_spring_ioc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study_spring_ioc_anno/study_spring_ioc_anno.iml" filepath="$PROJECT_DIR$/study_spring_ioc_anno/study_spring_ioc_anno.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study_spring_jdbcTemplate/study_spring_jdbcTemplate.iml" filepath="$PROJECT_DIR$/study_spring_jdbcTemplate/study_spring_jdbcTemplate.iml" />
+    </modules>
+  </component>
+</project>
