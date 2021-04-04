@@ -155,4 +155,15 @@ public class HttpTest {
         }
         outputStream.close();
     }
+
+    @Test
+    public void testB() throws InterruptedException {
+        int i = 0;
+        while (true) {
+//            System.out.print("\b\b");
+            System.out.print(i++ + "%");
+            Thread.sleep(2000);
+        }
+
+    }
 }

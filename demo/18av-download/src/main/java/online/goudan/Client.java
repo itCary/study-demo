@@ -43,37 +43,40 @@ public class Client {
                 System.out.println("地址为空！！\n");
                 continue;
             }
+            System.out.println("请输入文件名：");
+            String fileName = scanner.nextLine();
             executorService.execute(() -> {
                 try {
-                    downAndMerge(dir, url);
+                    downAndMerge(dir, url, fileName);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
         }
-        System.out.println("退出。。。。。。");
-        Thread.sleep(1500);
-        System.out.println("退出成功！");
+        System.out.println("退出应用");
         System.exit(0);
     }
 
-    private static void downAndMerge(String dir, String url) throws URIReferenceException {
+    private static void downAndMerge(String dir, String url, String fileName) throws URIReferenceException {
         try {
             CloseableHttpClient httpClient = HttpClientBuilder.create().build();
             String[] split = url.split("\\/");
             String name = split[split.length - 1];
-            String fileName = name.split("\\.")[0] + ".ts";
+//            String fileName = name.split("\\.")[0] + ".ts";
             HttpGet httpGet = new HttpGet(url);
-            ExecutorService executorService = Executors.newFixedThreadPool(10);
+            ExecutorService executorService = Executors.newFixedThreadPool(5);
             CloseableHttpResponse response = httpClient.execute(httpGet);
             HttpEntity entity = response.getEntity();
             if (entity != null && entity.isStreaming()) {
-                System.out.println(fileName + "\t开始下载");
                 File dirFile = new File(dir);
                 if (!dirFile.exists()) {
                     dirFile.mkdirs();
                 }
-                File file = new File(dirFile, fileName);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                FileOutputStream out = new FileOutputStream(new File(dir, fileName + ".log"), true);
+                out.write(String.format("[%s]   %s.ts 开始下载%n", sdf.format(new Date()), fileName).getBytes());
+
+                File file = new File(dirFile, fileName + ".ts");
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(entity.getContent()));
                 String d;
                 List<File> list = new ArrayList<>();
@@ -84,21 +87,22 @@ public class Client {
                     String s = d;
                     executorService.execute(() -> {
 //                        System.out.println("uri=" + get.getURI());
-                        CloseableHttpResponse res = null;
-                        InputStream content = null;
-                        File f = new File(dirFile, s);
-                        if (f.exists()) {
-                            return;
-                        }
-                        HttpGet get = new HttpGet(url.replace(name, s));
                         try {
-//                            System.out.println(s + "\tdownload...");
-                            res = httpClient.execute(get);
-//                            System.out.println(s + "\tdownload success");
+                            File f = new File(dirFile, s);
+                            if (f.exists()) {
+                                synchronized (out) {
+                                    out.write(String.format("%s已经存在%n", f.getName()).getBytes());
+                                }
+                                list.add(f);
+                                return;
+                            }
+                            HttpGet get = new HttpGet(url.replace(name, s));
+                            CloseableHttpResponse res = httpClient.execute(get);
                             FileOutputStream os = new FileOutputStream(f);
-//                            System.out.println(s + "\twriting....");
                             res.getEntity().writeTo(os);
-//                            System.out.println(s + "\twrite success\n");
+                            synchronized (out) {
+                                out.write(String.format("[%s]   %s下载成功%n", sdf.format(new Date()), f.getName()).getBytes());
+                            }
                             list.add(f);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -109,8 +113,8 @@ public class Client {
                 while (!executorService.isTerminated()) {
                     Thread.sleep(1000);
                 }
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                System.out.println(sdf.format(new Date()) + ",\t" + file.getName() + "下载完成");
+                out.write(String.format("[%s]   %s下载完成%n", sdf.format(new Date()), file.getName()).getBytes());
+                
                 list.sort((o1, o2) -> {
                     String s1 = o1.getName().replace(".ts", "").split("_")[1];
                     String s2 = o2.getName().replace(".ts", "").split("_")[1];
@@ -126,10 +130,11 @@ public class Client {
                     file1.delete();
                 }
                 outputStream.close();
-                System.out.println(sdf.format(new Date()) + "\t" + file.getName() + "合并完成");
+                out.write(String.format("[%s]   %s合并完成%n", sdf.format(new Date()), file.getName()).getBytes());
             }
         } catch (Exception e) {
-            System.out.println("外围出错");
+            System.out.println("aaaaaaaaaaaaaaaaa");
+            e.printStackTrace();
         }
     }
 
