@@ -5,6 +5,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.TextUtils;
 
 import javax.xml.crypto.URIReferenceException;
 import java.io.*;
@@ -23,16 +24,24 @@ import java.util.concurrent.Executors;
  */
 @SuppressWarnings("all")
 public class Client {
+    public static String dir;
+
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         Scanner scanner = new Scanner(System.in);
-        System.out.println("请输入要保存的目录：");
-        String dir = scanner.nextLine();
         while (true) {
-            System.out.println("请输入地址：");
+            if (TextUtils.isEmpty(dir)) {
+                System.out.println("请输入文件保存地址：");
+                dir = scanner.nextLine();
+            }
+            System.out.println("请输入下载地址：");
             String url = scanner.nextLine();
             if ("exit".equals(url)) {
                 break;
+            }
+            if (TextUtils.isEmpty(url) || TextUtils.isEmpty(dir)) {
+                System.out.println("地址为空！！\n");
+                continue;
             }
             executorService.execute(() -> {
                 try {
@@ -41,25 +50,14 @@ public class Client {
                     e.printStackTrace();
                 }
             });
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
         System.out.println("退出。。。。。。");
         Thread.sleep(1500);
         System.out.println("退出成功！");
-//        System.exit(1);
+        System.exit(0);
     }
 
     private static void downAndMerge(String dir, String url) throws URIReferenceException {
-        if (null == url || dir == null) {
-            System.out.println("为空");
-            return;
-        }
-
-
         try {
             CloseableHttpClient httpClient = HttpClientBuilder.create().build();
             String[] split = url.split("\\/");
@@ -70,6 +68,7 @@ public class Client {
             CloseableHttpResponse response = httpClient.execute(httpGet);
             HttpEntity entity = response.getEntity();
             if (entity != null && entity.isStreaming()) {
+                System.out.println(fileName + "\t开始下载");
                 File dirFile = new File(dir);
                 if (!dirFile.exists()) {
                     dirFile.mkdirs();
@@ -84,11 +83,14 @@ public class Client {
                     }
                     String s = d;
                     executorService.execute(() -> {
-                        HttpGet get = new HttpGet(url.replace(name, s));
 //                        System.out.println("uri=" + get.getURI());
                         CloseableHttpResponse res = null;
                         InputStream content = null;
                         File f = new File(dirFile, s);
+                        if (f.exists()) {
+                            return;
+                        }
+                        HttpGet get = new HttpGet(url.replace(name, s));
                         try {
 //                            System.out.println(s + "\tdownload...");
                             res = httpClient.execute(get);
