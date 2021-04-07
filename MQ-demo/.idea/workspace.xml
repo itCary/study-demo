@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8adf78eb-942b-467c-b45f-7cc356cc5b28" name="Default Changelist" comment="" />
+    <list default="true" id="8adf78eb-942b-467c-b45f-7cc356cc5b28" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../demo/test/src/main/java/online/goudan/domain/MyAnnotation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo/test/src/main/java/online/goudan/domain/Object2MapUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo/test/src/main/java/online/goudan/domain/Suppp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rabbitmq-util/src/main/java/online/goudan/util/ConnectionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitmq-util/src/main/java/online/goudan/util/ConnectionUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rabbitmq-util/target/classes/online/goudan/util/ConnectionUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitmq-util/target/classes/online/goudan/util/ConnectionUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rabbitmq-consumer/src/main/resources/rabbitmq.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rabbitmq-consumer/src/main/resources/rabbitmq.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rabbitmq-consumer2/src/main/resources/rabbitmq.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rabbitmq-consumer2/src/main/resources/rabbitmq.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rabbitmq-producer/src/main/resources/rabbitmq.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rabbitmq-producer/src/main/resources/rabbitmq.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-rabbitmq-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-rabbitmq-consumer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-rabbitmq-producer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-rabbitmq-producer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/test/src/main/java/online/goudan/domain/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/test/src/main/java/online/goudan/domain/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/test/src/test/java/online/goudan/ReflexTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/test/src/test/java/online/goudan/ReflexTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/test/target/classes/online/goudan/domain/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/test/target/classes/online/goudan/domain/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/test/target/test-classes/online/goudan/ReflexTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/test/target/test-classes/online/goudan/ReflexTest.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +102,44 @@
       <recent name="$PROJECT_DIR$/springboot-rabbitmq-producer/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ConsumerTest.testSpringQueue">
+  <component name="RunManager" selected="Application.Consumer_HelloWorld">
+    <configuration name="Consumer_HelloWorld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="online.goudan.consumer.hello_world.Consumer_HelloWorld" />
+      <module name="rabbitmq-consumer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="online.goudan.consumer.hello_world.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Producer_HelloWorld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="online.goudan.producer.hello_world.Producer_HelloWorld" />
+      <module name="rabbitmq-producer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="online.goudan.producer.hello_world.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ConsumerTest.testSpringQueue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring-rabbitmq-consumer2" />
       <extension name="coverage">
@@ -135,42 +188,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProducerTest.testSend (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-rabbitmq-producer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="online.goudan.producer.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="online.goudan.producer.test" />
-      <option name="MAIN_CLASS_NAME" value="online.goudan.producer.test.ProducerTest" />
-      <option name="METHOD_NAME" value="testSend" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="springboot-rabbitmq-consumer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="online.goudan.consumer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="online.goudan.consumer.Application" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Consumer_HelloWorld" />
+        <item itemvalue="Application.Producer_HelloWorld" />
         <item itemvalue="JUnit.ConsumerTest.testSpringQueue" />
         <item itemvalue="JUnit.ProducerTest.testConfirm" />
         <item itemvalue="JUnit.ProducerTest.testReturn" />
-        <item itemvalue="JUnit.ProducerTest.testSend (1)" />
-        <item itemvalue="Spring Boot.Application (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -194,6 +218,7 @@
       <workItem from="1616548994301" duration="4599000" />
       <workItem from="1616632730994" duration="1120000" />
       <workItem from="1617068033029" duration="218000" />
+      <workItem from="1617788012278" duration="326000" />
     </task>
     <servers />
   </component>
@@ -226,27 +251,31 @@
       <screen x="0" y="23" width="1440" height="795" />
     </state>
     <state x="392" y="117" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.795@0.23.1440.795" timestamp="1615819400973" />
-    <state width="1388" height="356" key="GridCell.Tab.0.bottom" timestamp="1615905619269">
+    <state width="1388" height="356" key="GridCell.Tab.0.bottom" timestamp="1617788238091">
       <screen x="0" y="23" width="1440" height="795" />
     </state>
+    <state width="1388" height="356" key="GridCell.Tab.0.bottom/0.23.1440.795/-1024.111.1024.745@0.23.1440.795" timestamp="1617788238091" />
     <state width="1388" height="356" key="GridCell.Tab.0.bottom/0.23.1440.795@0.23.1440.795" timestamp="1615905619269" />
     <state width="1868" height="460" key="GridCell.Tab.0.bottom/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615800177982" />
     <state width="1388" height="441" key="GridCell.Tab.0.bottom/0.23.1440.877/-1920.-74.1920.975@0.23.1440.877" timestamp="1615535351315" />
-    <state width="1388" height="356" key="GridCell.Tab.0.center" timestamp="1615905619269">
+    <state width="1388" height="356" key="GridCell.Tab.0.center" timestamp="1617788238090">
       <screen x="0" y="23" width="1440" height="795" />
     </state>
+    <state width="1388" height="356" key="GridCell.Tab.0.center/0.23.1440.795/-1024.111.1024.745@0.23.1440.795" timestamp="1617788238090" />
     <state width="1388" height="356" key="GridCell.Tab.0.center/0.23.1440.795@0.23.1440.795" timestamp="1615905619269" />
     <state width="1868" height="460" key="GridCell.Tab.0.center/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615800177982" />
     <state width="1388" height="441" key="GridCell.Tab.0.center/0.23.1440.877/-1920.-74.1920.975@0.23.1440.877" timestamp="1615535351314" />
-    <state width="1388" height="356" key="GridCell.Tab.0.left" timestamp="1615905619268">
+    <state width="1388" height="356" key="GridCell.Tab.0.left" timestamp="1617788238090">
       <screen x="0" y="23" width="1440" height="795" />
     </state>
+    <state width="1388" height="356" key="GridCell.Tab.0.left/0.23.1440.795/-1024.111.1024.745@0.23.1440.795" timestamp="1617788238090" />
     <state width="1388" height="356" key="GridCell.Tab.0.left/0.23.1440.795@0.23.1440.795" timestamp="1615905619268" />
     <state width="1868" height="460" key="GridCell.Tab.0.left/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615800177981" />
     <state width="1388" height="441" key="GridCell.Tab.0.left/0.23.1440.877/-1920.-74.1920.975@0.23.1440.877" timestamp="1615535351313" />
-    <state width="1388" height="356" key="GridCell.Tab.0.right" timestamp="1615905619269">
+    <state width="1388" height="356" key="GridCell.Tab.0.right" timestamp="1617788238091">
       <screen x="0" y="23" width="1440" height="795" />
     </state>
+    <state width="1388" height="356" key="GridCell.Tab.0.right/0.23.1440.795/-1024.111.1024.745@0.23.1440.795" timestamp="1617788238091" />
     <state width="1388" height="356" key="GridCell.Tab.0.right/0.23.1440.795@0.23.1440.795" timestamp="1615905619269" />
     <state width="1868" height="460" key="GridCell.Tab.0.right/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615800177982" />
     <state width="1388" height="441" key="GridCell.Tab.0.right/0.23.1440.877/-1920.-74.1920.975@0.23.1440.877" timestamp="1615535351314" />

@@ -1,5 +1,7 @@
 package online.goudan;
 
+import online.goudan.domain.Car;
+import online.goudan.domain.Object2MapUtil;
 import online.goudan.domain.Person;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +11,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author 刘苟淡
@@ -18,12 +22,19 @@ import java.util.Arrays;
 public class ReflexTest {
 
     private Class<?> clazz;
-    private Person person;
+    private Object person;
 
     @Before
     public void init() throws Exception {
         clazz = getClass().getClassLoader().loadClass("online.goudan.domain.Person");
-        person = (Person) clazz.newInstance();
+        Person person = (Person) clazz.newInstance();
+        person.setAge(12);
+        person.setName("石器世界工");
+        Car car = new Car();
+        car.setColor("red");
+        car.setName("aoaoaoa");
+        person.setCar(car);
+        this.person = person;
     }
 
     @Test
@@ -94,6 +105,12 @@ public class ReflexTest {
         for (Field field : fields) {
             System.out.println(field);
         }
+
+        Field[] clazzFields = clazz.getFields();
+        System.out.println(clazzFields.length);
+        for (Field clazzField : clazzFields) {
+            System.out.println(clazzField);
+        }
     }
 
     /**
@@ -132,5 +149,47 @@ public class ReflexTest {
                 Arrays.stream(annotations).forEach(annotation -> System.out.println(annotation.annotationType().getSimpleName()));
             }
         });
+    }
+
+    @Test
+    public void test08() throws Exception {
+        Method setCar = clazz.getMethod("setCar", Car.class);
+        Annotation[] annotations = setCar.getAnnotations();
+        for (Annotation annotation : annotations) {
+            Class<? extends Annotation> clazz = annotation.annotationType();
+            Method[] methods = clazz.getDeclaredMethods();
+            for (Method method : methods) {
+                System.out.println(method.getName() + " = " + method.invoke(annotation));
+            }
+        }
+    }
+
+    @Test
+    public void testO2M() {
+        Person person = new Person();
+        person.setName("石器世界工");
+        person.setAge(12);
+        Car car = new Car();
+        car.setColor("red");
+        car.setName("aoaoaoa");
+        person.setCar(car);
+        Map<String, Object> map = Object2MapUtil.object2Map(person);
+        String ds = ds(map);
+        System.out.println(ds);
+    }
+
+    private String ds(Map<String, Object> map) {
+        StringBuffer stringBuffer = new StringBuffer();
+        for (String s : map.keySet()) {
+            Object o = map.get(s);
+            if (o instanceof HashMap) {
+                stringBuffer.append(s + " = {" + ds((Map<String, Object>) o) + "}");
+            } else {
+                stringBuffer.append(s + " = " + o + "\n");
+                System.out.println(s + " = " + o);
+            }
+        }
+
+        return stringBuffer.toString();
     }
 }

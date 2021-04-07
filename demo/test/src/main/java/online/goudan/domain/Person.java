@@ -5,10 +5,11 @@ package online.goudan.domain;
  * @description
  * @date 2020/9/24 11:05
  */
-public class Person {
+public class Person extends Suppp {
 
     private String name;
     private int age;
+    private Car car;
 
     public String getName() {
         return name;
@@ -34,12 +35,21 @@ public class Person {
         System.out.println(msg);
     }
 
+    private Car getCar() {
+        return car;
+    }
+
+    @MyAnnotation(desc = "de", name = "na")
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
     @Override
-    @Deprecated
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", car=" + car +
                 '}';
     }
 }

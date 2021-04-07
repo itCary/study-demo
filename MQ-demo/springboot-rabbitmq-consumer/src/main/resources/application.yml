@@ -1,6 +1,6 @@
 spring:
   rabbitmq:
-    host: 172.16.239.130
+    host: mylinux
     username: goudan
     password: goudan125
     virtual-host: piaoxianglou
