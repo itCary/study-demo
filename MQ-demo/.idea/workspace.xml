@@ -5,21 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8adf78eb-942b-467c-b45f-7cc356cc5b28" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../demo/test/src/main/java/online/goudan/domain/MyAnnotation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../demo/test/src/main/java/online/goudan/domain/Object2MapUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../demo/test/src/main/java/online/goudan/domain/Suppp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rabbitmq-util/src/main/java/online/goudan/util/ConnectionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitmq-util/src/main/java/online/goudan/util/ConnectionUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rabbitmq-util/target/classes/online/goudan/util/ConnectionUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitmq-util/target/classes/online/goudan/util/ConnectionUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rabbitmq-consumer/src/main/resources/rabbitmq.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rabbitmq-consumer/src/main/resources/rabbitmq.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rabbitmq-consumer2/src/main/resources/rabbitmq.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rabbitmq-consumer2/src/main/resources/rabbitmq.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rabbitmq-producer/src/main/resources/rabbitmq.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rabbitmq-producer/src/main/resources/rabbitmq.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-rabbitmq-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-rabbitmq-consumer/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-rabbitmq-producer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-rabbitmq-producer/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/test/src/main/java/online/goudan/domain/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/test/src/main/java/online/goudan/domain/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/test/src/test/java/online/goudan/ReflexTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/test/src/test/java/online/goudan/ReflexTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/test/target/classes/online/goudan/domain/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/test/target/classes/online/goudan/domain/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/test/target/test-classes/online/goudan/ReflexTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/test/target/test-classes/online/goudan/ReflexTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +204,7 @@
       <workItem from="1616548994301" duration="4599000" />
       <workItem from="1616632730994" duration="1120000" />
       <workItem from="1617068033029" duration="218000" />
-      <workItem from="1617788012278" duration="326000" />
+      <workItem from="1617788012278" duration="975000" />
     </task>
     <servers />
   </component>
@@ -251,34 +237,38 @@
       <screen x="0" y="23" width="1440" height="795" />
     </state>
     <state x="392" y="117" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.795@0.23.1440.795" timestamp="1615819400973" />
-    <state width="1388" height="356" key="GridCell.Tab.0.bottom" timestamp="1617788238091">
-      <screen x="0" y="23" width="1440" height="795" />
+    <state width="1388" height="356" key="GridCell.Tab.0.bottom" timestamp="1617807780586">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1388" height="356" key="GridCell.Tab.0.bottom/0.23.1440.795/-1024.111.1024.745@0.23.1440.795" timestamp="1617788238091" />
     <state width="1388" height="356" key="GridCell.Tab.0.bottom/0.23.1440.795@0.23.1440.795" timestamp="1615905619269" />
     <state width="1868" height="460" key="GridCell.Tab.0.bottom/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615800177982" />
     <state width="1388" height="441" key="GridCell.Tab.0.bottom/0.23.1440.877/-1920.-74.1920.975@0.23.1440.877" timestamp="1615535351315" />
-    <state width="1388" height="356" key="GridCell.Tab.0.center" timestamp="1617788238090">
-      <screen x="0" y="23" width="1440" height="795" />
+    <state width="1388" height="356" key="GridCell.Tab.0.bottom/0.23.1440.877/-245.-1057.1920.975@0.23.1440.877" timestamp="1617807780586" />
+    <state width="1388" height="356" key="GridCell.Tab.0.center" timestamp="1617807780585">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1388" height="356" key="GridCell.Tab.0.center/0.23.1440.795/-1024.111.1024.745@0.23.1440.795" timestamp="1617788238090" />
     <state width="1388" height="356" key="GridCell.Tab.0.center/0.23.1440.795@0.23.1440.795" timestamp="1615905619269" />
     <state width="1868" height="460" key="GridCell.Tab.0.center/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615800177982" />
     <state width="1388" height="441" key="GridCell.Tab.0.center/0.23.1440.877/-1920.-74.1920.975@0.23.1440.877" timestamp="1615535351314" />
-    <state width="1388" height="356" key="GridCell.Tab.0.left" timestamp="1617788238090">
-      <screen x="0" y="23" width="1440" height="795" />
+    <state width="1388" height="356" key="GridCell.Tab.0.center/0.23.1440.877/-245.-1057.1920.975@0.23.1440.877" timestamp="1617807780585" />
+    <state width="1388" height="356" key="GridCell.Tab.0.left" timestamp="1617807780584">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1388" height="356" key="GridCell.Tab.0.left/0.23.1440.795/-1024.111.1024.745@0.23.1440.795" timestamp="1617788238090" />
     <state width="1388" height="356" key="GridCell.Tab.0.left/0.23.1440.795@0.23.1440.795" timestamp="1615905619268" />
     <state width="1868" height="460" key="GridCell.Tab.0.left/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615800177981" />
     <state width="1388" height="441" key="GridCell.Tab.0.left/0.23.1440.877/-1920.-74.1920.975@0.23.1440.877" timestamp="1615535351313" />
-    <state width="1388" height="356" key="GridCell.Tab.0.right" timestamp="1617788238091">
-      <screen x="0" y="23" width="1440" height="795" />
+    <state width="1388" height="356" key="GridCell.Tab.0.left/0.23.1440.877/-245.-1057.1920.975@0.23.1440.877" timestamp="1617807780584" />
+    <state width="1388" height="356" key="GridCell.Tab.0.right" timestamp="1617807780585">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1388" height="356" key="GridCell.Tab.0.right/0.23.1440.795/-1024.111.1024.745@0.23.1440.795" timestamp="1617788238091" />
     <state width="1388" height="356" key="GridCell.Tab.0.right/0.23.1440.795@0.23.1440.795" timestamp="1615905619269" />
     <state width="1868" height="460" key="GridCell.Tab.0.right/0.23.1440.877/-1920.-74.1920.975@-1920.-74.1920.975" timestamp="1615800177982" />
     <state width="1388" height="441" key="GridCell.Tab.0.right/0.23.1440.877/-1920.-74.1920.975@0.23.1440.877" timestamp="1615535351314" />
+    <state width="1388" height="356" key="GridCell.Tab.0.right/0.23.1440.877/-245.-1057.1920.975@0.23.1440.877" timestamp="1617807780585" />
     <state width="1868" height="460" key="GridCell.Tab.1.bottom" timestamp="1615799182842">
       <screen x="-1920" y="-74" width="1920" height="975" />
     </state>
