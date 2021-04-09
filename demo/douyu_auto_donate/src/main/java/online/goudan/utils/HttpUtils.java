@@ -97,6 +97,9 @@ public class HttpUtils {
                 if (cookie != null && !md5.digestHex(md5.digest(file)).equals(disgest)) {
                     log.info("reloadCookie: properties配置文件发生更改,重新加载完成");
                 }
+                if (cookie != null && md5.digestHex(md5.digest(file)).equals(disgest)) {
+                    log.info("reloadCookie: 加载properties配置文件成功");
+                }
                 disgest = md5.digestHex(md5.digest(file));
             } catch (Exception e) {
                 log.info("reloadCookie: 加载properties配置文件失败");
