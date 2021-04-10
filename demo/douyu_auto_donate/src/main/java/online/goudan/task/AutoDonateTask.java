@@ -39,9 +39,17 @@ public class AutoDonateTask {
      * @throws Exception
      */
     @Scheduled(fixedDelay = 15 * 1000)
-    public void reloadCookie()  {
-
+    public void reloadCookie() {
         httpUtils.reloadCookie();
+    }
+
+    @Scheduled(fixedRate = 3 * 1000)
+    public void exporterLog() {
+        try {
+            LogUtil.exporterLogFile();
+        } catch (IOException e) {
+            log.error("exporterLog: " + e.getMessage());
+        }
     }
 
     private Gson gson = new Gson();
@@ -49,8 +57,8 @@ public class AutoDonateTask {
 
     int giftSize = 1;
 
-    //    @Scheduled(cron = "0 0 6,12,18 * * ?")
-    @Scheduled(fixedRate = 1000 * 60 * 60 * 8)
+    @Scheduled(cron = "0 0 2,6,12,18,22 * * ?")
+//    @Scheduled(fixedRate = 1000 * 60 * 60 * 8)
     public void task() throws Exception {
         if (!httpUtils.enable()) {
             log.error("task: 没有cookie，无法进行！！！");

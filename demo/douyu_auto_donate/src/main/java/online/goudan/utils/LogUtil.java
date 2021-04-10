@@ -16,23 +16,20 @@ public class LogUtil {
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
 
     private static FileOutputStream outputStream;
-    private FileOutputStream logOut;
+
+    private static File out = new File(System.getProperty("user.dir"), "douyu.log");
 
     private LogUtil(String name) {
         className = name;
-        logOut = outputStream;
     }
 
     public static LogUtil getInstance(Class clazz) {
         if (outputStream == null) {
-            File dirfile = new File(System.getProperty("user.dir"));
-            File outFile = new File(dirfile, "douyu.log");
             try {
-                if (!outFile.exists()) {
-                    outFile.createNewFile();
-
+                if (!out.exists()) {
+                    out.createNewFile();
                 }
-                outputStream = new FileOutputStream(outFile,true);
+                outputStream = new FileOutputStream(out, true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -50,9 +47,16 @@ public class LogUtil {
 
     private void print(String level, String msg) {
         try {
-            logOut.write(String.format("[%s] [%s] %s: %s%n", level, simpleDateFormat.format(new Date()), className, msg).getBytes());
+            outputStream.write(String.format("[%s] [%s] %s: %s%n", level, simpleDateFormat.format(new Date()), className, msg).getBytes());
         } catch (IOException e) {
-            e.printStackTrace();
+            error(e.getMessage());
+        }
+    }
+
+    public static void exporterLogFile() throws IOException {
+        if (!out.exists()) {
+            out.createNewFile();
+            outputStream = new FileOutputStream(out, true);
         }
     }
 }
