@@ -15,27 +15,23 @@ import java.util.*;
  * @date 2021/4/9 20:48
  * @desc http请求封装工具类
  */
-@Component
 public class HttpUtils {
 
-    private String basicUrl = "https://www.douyu.com";
+    private final String basicUrl = "https://www.douyu.com";
 
     private String cookie;
     private String disgest;
     private File file;
-    private MD5 md5 = MD5.create();
-    @Autowired
+    private final MD5 md5 = MD5.create();
     private Properties properties;
-    private LogUtil log = LogUtil.getInstance(getClass());
+    private final LogUtil log = LogUtil.getInstance(getClass());
 
-    @Bean
-    private OkHttpClient createOkHttpClient() {
-        return new OkHttpClient();
+    public HttpUtils() {
+        loadPropertiesFile();
     }
 
-    @Bean
-    private Properties loadPropertiesFile() {
-        Properties properties = new Properties();
+    private void loadPropertiesFile() {
+        properties = new Properties();
         try {
             File dirfile = new File(System.getProperty("user.dir"));
             file = new File(dirfile, "douyu.properties");
@@ -46,7 +42,6 @@ public class HttpUtils {
         } catch (Exception e) {
             log.error("loadPropertiesFile: " + e.getMessage());
         }
-        return properties;
     }
 
 

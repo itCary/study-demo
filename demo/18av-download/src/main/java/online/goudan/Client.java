@@ -73,7 +73,11 @@ public class Client {
                     dirFile.mkdirs();
                 }
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                FileOutputStream out = new FileOutputStream(new File(dir, fileName + ".log"), true);
+                File logFile = new File(dir, fileName + ".log");
+                if (!logFile.exists()) {
+                    logFile.createNewFile();
+                }
+                FileOutputStream out = new FileOutputStream(logFile, true);
                 out.write(String.format("[%s]   %s.ts 开始下载%n", sdf.format(new Date()), fileName).getBytes());
 
                 File file = new File(dirFile, fileName + ".ts");
@@ -114,7 +118,7 @@ public class Client {
                     Thread.sleep(1000);
                 }
                 out.write(String.format("[%s]   %s下载完成%n", sdf.format(new Date()), file.getName()).getBytes());
-                
+
                 list.sort((o1, o2) -> {
                     String s1 = o1.getName().replace(".ts", "").split("_")[1];
                     String s2 = o2.getName().replace(".ts", "").split("_")[1];

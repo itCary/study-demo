@@ -1,0 +1,18 @@
+server:
+  port: 80
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:///security?useUnicode=true&characterEncoding=utfmb4-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+  security:
+    user:
+      password: admin
+      name: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+

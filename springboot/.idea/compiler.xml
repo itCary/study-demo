@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springboog-crawler-zxcs" />
+        <module name="springboot-demo" />
         <module name="springboot-01" />
         <module name="springboot-AutoFillIn" />
       </profile>
@@ -17,6 +18,7 @@
       <module name="springboot-01" target="6" />
       <module name="springboot-AutoFillIn" target="1.8" />
       <module name="springboot-crawler-zxcs" target="1.8" />
+      <module name="springboot-demo" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
