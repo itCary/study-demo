@@ -9,11 +9,12 @@ import org.apache.http.util.TextUtils;
 
 import javax.xml.crypto.URIReferenceException;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,6 +30,7 @@ public class Client {
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         Scanner scanner = new Scanner(System.in);
+        Class.forName("com.mysql.jdbc.Driver");
         while (true) {
             if (TextUtils.isEmpty(dir)) {
                 System.out.println("请输入文件保存地址：");
@@ -47,6 +49,20 @@ public class Client {
             String fileName = scanner.nextLine();
             executorService.execute(() -> {
                 try {
+                    Connection connection = DriverManager.getConnection("jdbc:mysql:///novel", "root", "root");
+                    String sql = "insert into au(name,url,gmt_create,gmt_modified) values(?,?,?,?)";
+
+                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                    String fn = Base64.getEncoder().encodeToString(fileName.getBytes(StandardCharsets.UTF_8));
+                    preparedStatement.setString(1, fn);
+                    preparedStatement.setString(2, url);
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String dateStr = format.format(new Date());
+                    preparedStatement.setString(3, dateStr);
+                    preparedStatement.setString(4, dateStr);
+                    final int i = preparedStatement.executeUpdate();
+                    System.out.println(i > 0);
+                    connection.close();
                     downAndMerge(dir, url, fileName);
                 } catch (Exception e) {
                     e.printStackTrace();
