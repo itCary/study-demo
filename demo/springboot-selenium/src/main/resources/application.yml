@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql:///novel?useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #控制台打印sql
+
+file:
+  dir: /Users/Cary/Downloads/novel/
+
+novel:
+  index: 14032
+
+org:
+  springframework:
+    boot:
+      SpringApplicationRunListener: online.goudan.ApplicationListener
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+server:
+  port: 80
+
+

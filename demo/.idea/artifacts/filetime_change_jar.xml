@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="filetime-change:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/filetime_change_jar</output-path>
-    <root id="archive" name="filetime-change.jar">
-      <element id="module-output" name="filetime-change" />
-    </root>
-  </artifact>
-</component>

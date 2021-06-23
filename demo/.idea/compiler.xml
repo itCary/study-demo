@@ -8,16 +8,26 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="netty-demo" />
+        <module name="douyu_auto_donate" />
         <module name="test" />
-        <module name="18av-download" />
+        <module name="springboot-selenium" />
+        <module name="video-download" />
         <module name="proxy-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="18av-download" target="8" />
+      <module name="douyu_auto_donate" target="1.8" />
       <module name="netty-demo" target="1.5" />
       <module name="proxy-demo" target="8" />
+      <module name="springboot-selenium" target="8" />
       <module name="test" target="8" />
+      <module name="video-download" target="8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="douyu_auto_donate" options="-parameters" />
+    </option>
   </component>
 </project>

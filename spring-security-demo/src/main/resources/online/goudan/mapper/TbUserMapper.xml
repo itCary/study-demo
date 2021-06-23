@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.goudan.mapper.TbUserMapper">
+    <resultMap id="BaseResultMap" type="online.goudan.pojo.TbUser">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="name" property="name"/>
+        <result column="address" property="address"/>
+        <result column="password" property="password"/>
+        <collection property="tbRoleList" ofType="online.goudan.pojo.TbRole">
+            <result column="rid" property="id"></result>
+            <result column="rname" property="name"></result>
+            <result column="desc" property="desc"></result>
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, username, name, address, password
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select u.*,r.id rid,r.name rname,r.desc
+        from tb_user u left join tb_user_role ur on ur.user_id = u.id
+        left join tb_role r on r.id = ur.role_id
+        <where>
+            <if test="id">
+                u.id=#{id}
+            </if>
+            <if test="username">
+                AND u.username = #{username}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from tb_user
+    where id = #{id,jdbcType=BIGINT}
+      and username = #{username,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="online.goudan.pojo.TbUser">
+    insert into tb_user (id, username, name, 
+      address, password)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="online.goudan.pojo.TbUser">
+        insert into tb_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="online.goudan.pojo.TbUser">
+        update tb_user
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+        and username = #{username,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="online.goudan.pojo.TbUser">
+    update tb_user
+    set name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and username = #{username,jdbcType=VARCHAR}
+  </update>
+</mapper>

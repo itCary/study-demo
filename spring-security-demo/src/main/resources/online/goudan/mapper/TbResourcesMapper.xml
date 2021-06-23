@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.goudan.mapper.TbResourcesMapper">
+    <resultMap id="BaseResultMap" type="online.goudan.pojo.TbResources">
+        <id column="id" property="id"/>
+        <result column="url" property="url"/>
+        <result column="desc" property="desc"/>
+        <collection property="roleList" ofType="online.goudan.pojo.TbRole">
+            <result column="rid" property="id"></result>
+            <result column="rname" property="name"></result>
+            <result column="rdesc" property="desc"></result>
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, url, desc
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+       select re.*,r.id rid,r.name rname ,r.desc rdesc
+       from tb_resources re
+       left join tb_resources_role rr
+       on rr.resources_id = re.id
+       left join tb_role r
+       on r.id = rr.role_id
+    where re.id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+       select re.*,r.id rid,r.name rname ,r.desc rdesc
+       from tb_resources re
+       left join tb_resources_role rr
+       on rr.resources_id = re.id
+       left join tb_role r
+       on r.id = rr.role_id
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_resources
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="online.goudan.pojo.TbResources">
+    insert into tb_resources (id, url, desc)
+    values (#{id,jdbcType=BIGINT}, #{url,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="online.goudan.pojo.TbResources">
+        insert into tb_resources
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="desc != null">
+                desc,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="desc != null">
+                #{desc,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="online.goudan.pojo.TbResources">
+        update tb_resources
+        <set>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="desc != null">
+                desc = #{desc,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="online.goudan.pojo.TbResources">
+    update tb_resources
+    set url = #{url,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

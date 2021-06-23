@@ -226,3 +226,4 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 
+META-INF/
