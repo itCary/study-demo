@@ -55,10 +55,20 @@ public class Client {
 
             executorService.execute(() -> {
                 try {
+                    String fileName = null;
+                    String url = null;
+                    boolean flag = true;
                     WebDriver driver = new ChromeDriver();
-                    requestHtml(driver, videoUrl);
-                    String fileName = getFileName(driver);
-                    String url = getDownloadUrl(driver);
+                    while (flag) {
+                        try {
+                            requestHtml(driver, videoUrl);
+                            fileName = getFileName(driver);
+                            url = getDownloadUrl(driver);
+                            flag = false;
+                        } catch (Exception e) {
+                            flag = true;
+                        }
+                    }
                     closeDriver(driver);
                     Connection connection = DriverManager.getConnection("jdbc:mysql:///novel", "root", "root");
                     String sql = "insert into au(name,url,gmt_create,gmt_modified) values(?,?,?,?)";
@@ -77,6 +87,7 @@ public class Client {
                     downAndMerge(dir, url, fileName);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    System.out.println(videoUrl + ", request error");
                 }
             });
         }
@@ -85,7 +96,7 @@ public class Client {
     }
 
     private static void closeDriver(WebDriver driver) {
-        driver.close();
+        driver.quit();
     }
 
     private static String getDownloadUrl(WebDriver driver) {
@@ -105,7 +116,6 @@ public class Client {
         //当前页句柄,切换到当前页
         String primaryHandle = driver.getWindowHandle();
         Set<String> handles = driver.getWindowHandles();
-        System.out.println(handles.size());
         for (String handel : handles) {
             if (!handel.equals(primaryHandle)) {
                 driver.switchTo().window(handel);
