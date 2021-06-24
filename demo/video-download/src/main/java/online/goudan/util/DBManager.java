@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
@@ -35,10 +36,19 @@ public class DBManager {
     }
 
     public void saveBase64Name(VideoInfo videoInfo) {
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql:///novel", "root", "root")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql:///novel?useSSL=false", "root", "root")) {
+            String fn = Base64.getEncoder().encodeToString(videoInfo.getVideoName().getBytes(StandardCharsets.UTF_8));
+
+            String querySql = "select id from au where name = ?";
+            PreparedStatement queryStatement = connection.prepareStatement(querySql);
+            queryStatement.setString(1, fn);
+            ResultSet resultSet = queryStatement.executeQuery();
+            if (resultSet.next()) {
+                System.out.println("数据库中已经存在");
+                return;
+            }
             String sql = "insert into au(name,url,gmt_create,gmt_modified) values(?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            String fn = Base64.getEncoder().encodeToString(videoInfo.getVideoName().getBytes(StandardCharsets.UTF_8));
             preparedStatement.setString(1, fn);
             preparedStatement.setString(2, videoInfo.getM3u8Url());
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

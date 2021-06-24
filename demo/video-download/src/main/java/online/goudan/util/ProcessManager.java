@@ -25,6 +25,10 @@ public class ProcessManager {
         this.dirPath = dirPath;
         this.fileName = fileName;
         File processFile = new File(dirPath, fileName + ".log");
+        File file = new File(dirPath);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
         if (!processFile.exists()) {
             if (!processFile.createNewFile()) {
                 System.out.println("创建processManager失败");

@@ -113,10 +113,10 @@ public class M3U8Manager {
                     if (listener != null) {
                         listener.onDownloaded(m3U8.getProcess());
                     }
-                    countDownLatch.countDown();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                countDownLatch.countDown();
             });
         }
         try {
@@ -161,17 +161,19 @@ public class M3U8Manager {
                         if (listener != null) {
                             listener.mergerProcess(file);
                         }
-                        countDownLatch.countDown();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    countDownLatch.countDown();
                 });
             }
             try {
                 countDownLatch.await();
                 accessFile.close();
                 if (listener != null) {
-                    listener.megerFinish();
+                    File parentFile = new File(m3U8.getLocalDirPath(), videoInfo.getVideoName());
+
+                    listener.megerFinish(parentFile);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -38,7 +38,7 @@ public class WebDriverManager {
     }
 
     public static void close() {
-        ExecutorService executorService = Executors.newFixedThreadPool(20);
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
         CountDownLatch countDownLatch = new CountDownLatch(driverList.size());
         for (WebDriver webDriver : driverList) {
             executorService.execute(() -> {

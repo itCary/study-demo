@@ -16,5 +16,5 @@ public interface M3U8TsListener {
 
     void mergerProcess(File file);
 
-    void megerFinish();
+    void megerFinish(File parentFile);
 }

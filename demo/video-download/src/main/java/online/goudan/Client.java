@@ -70,9 +70,10 @@ public class Client {
                     }
 
                     @Override
-                    public void megerFinish() {
+                    public void megerFinish(File parentFile) {
                         optionalProcessManager.ifPresent(manger -> {
                             manger.addMessage("合并完成");
+                            parentFile.delete();
                             manger.close();
                         });
 

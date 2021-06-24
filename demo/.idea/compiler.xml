@@ -7,16 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="video-download" />
         <module name="netty-demo" />
         <module name="douyu_auto_donate" />
         <module name="test" />
-        <module name="springboot-selenium" />
-        <module name="video-download" />
         <module name="proxy-demo" />
+        <module name="springboot-selenium" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="18av-download" target="8" />
       <module name="douyu_auto_donate" target="1.8" />
       <module name="netty-demo" target="1.5" />
       <module name="proxy-demo" target="8" />
