@@ -20,7 +20,7 @@ import java.util.concurrent.Executors;
 @SuppressWarnings("all")
 public class WebDriverManager {
     static {
-        System.setProperty("webdriver.chrome.driver", "/Users/Cary/Downloads/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
     }
 
     private static List<WebDriver> driverList = new ArrayList<>();

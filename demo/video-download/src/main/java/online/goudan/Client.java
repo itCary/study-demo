@@ -67,6 +67,7 @@ public class Client {
                     @Override
                     public void mergerProcess(File file) {
                         optionalProcessManager.ifPresent(manger -> manger.addMessage("合并了" + file.getName()));
+                        file.delete();
                     }
 
                     @Override

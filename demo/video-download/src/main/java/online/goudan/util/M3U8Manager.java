@@ -148,39 +148,20 @@ public class M3U8Manager {
 
         try {
             File videoFile = new File(m3U8.getLocalDirPath(), videoInfo.getVideoName() + ".ts");
-            RandomAccessFile accessFile = new RandomAccessFile(videoFile, "rw");
-            CountDownLatch countDownLatch = new CountDownLatch(m3U8TsFileList.size());
-            for (int i = 0; i < m3U8TsFileList.size(); i++) {
-                long index = indexList.get(i);
-                File file = m3U8TsFileList.get(i);
-                executorService.execute(() -> {
-                    try {
-                        accessFile.seek(index);
-                        accessFile.write(IOUtils.readFully(file));
-                        file.delete();
-                        if (listener != null) {
-                            listener.mergerProcess(file);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    countDownLatch.countDown();
-                });
-            }
-            try {
-                countDownLatch.await();
-                accessFile.close();
+            FileOutputStream videoOut = new FileOutputStream(videoFile, true);
+            for (File file : m3U8TsFileList) {
+                videoOut.write(IOUtils.readFully(file));
                 if (listener != null) {
-                    File parentFile = new File(m3U8.getLocalDirPath(), videoInfo.getVideoName());
-
-                    listener.megerFinish(parentFile);
+                    listener.mergerProcess(file);
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+            }
+            if (listener != null) {
+                File parentFile = new File(m3U8.getLocalDirPath(), videoInfo.getVideoName());
+                listener.megerFinish(parentFile);
             }
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
