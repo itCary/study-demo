@@ -227,3 +227,4 @@ lint/tmp/
 # lint/reports/
 
 META-INF/
+chromedriver
