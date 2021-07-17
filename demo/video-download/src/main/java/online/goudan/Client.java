@@ -56,7 +56,7 @@ public class Client {
             WebDriverManager driverManager = WebDriverManager.getInstance();
             executorService.execute(() -> {
                 VideoInfo videoInfo = driverManager.useWebDriverGetVideoInfo(videoUrl);
-                downM3U8Ts(videoInfo);
+                DBManager.getInstance().saveBase64Name(videoInfo);
             });
         }
         WebDriverManager.close();
@@ -109,7 +109,6 @@ public class Client {
 
         m3U8Manager.setVideoInfo(videoInfo);
         m3U8Manager.generateM3U8(dir);
-        DBManager.getInstance().saveBase64Name(videoInfo);
         m3U8Manager.downloadM3U8Ts();
     }
 }
