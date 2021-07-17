@@ -87,16 +87,22 @@ public class Client {
             @Override
             public void mergerProcess(File file) {
                 optionalProcessManager.ifPresent(manger -> manger.addMessage("合并了" + file.getName()));
-                file.delete();
             }
 
             @Override
             public void megerFinish(File parentFile) {
                 optionalProcessManager.ifPresent(manger -> {
                     manger.addMessage("合并完成");
-                    parentFile.delete();
                     manger.close();
                 });
+                if (parentFile.listFiles().length == 0) {
+                    parentFile.delete();
+                } else {
+                    File[] files = parentFile.listFiles();
+                    for (File file : files) {
+                        file.delete();
+                    }
+                }
 
             }
         });

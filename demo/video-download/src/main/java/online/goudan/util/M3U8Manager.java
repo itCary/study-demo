@@ -143,26 +143,16 @@ public class M3U8Manager {
             return Integer.parseInt(s1) - Integer.parseInt(s2);
         });
 
-        List<Long> indexList = new ArrayList<>(m3U8TsFileList.size());
-        long totalSize = 0;
-        for (int i = 0; i < m3U8TsFileList.size(); i++) {
-            File file = m3U8TsFileList.get(i);
-            long length = file.length();
-            indexList.add(totalSize);
-            totalSize += length;
-        }
-
         try {
             File videoFile = new File(m3U8.getLocalDirPath(), videoInfo.getVideoName() + ".ts");
             FileOutputStream videoOut = new FileOutputStream(videoFile, true);
             for (File file : m3U8TsFileList) {
-                try {
-                    FileInputStream fileInputStream = new FileInputStream(file);
+                try (FileInputStream fileInputStream = new FileInputStream(file)) {
                     byte[] bytes = new byte[fileInputStream.available()];
                     fileInputStream.read(bytes);
                     videoOut.write(bytes);
-                    fileInputStream.close();
                 } finally {
+                    file.delete();
                     if (listener != null) {
                         listener.mergerProcess(file);
                     }
