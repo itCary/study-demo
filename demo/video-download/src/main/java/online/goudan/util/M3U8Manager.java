@@ -156,13 +156,16 @@ public class M3U8Manager {
             File videoFile = new File(m3U8.getLocalDirPath(), videoInfo.getVideoName() + ".ts");
             FileOutputStream videoOut = new FileOutputStream(videoFile, true);
             for (File file : m3U8TsFileList) {
-                FileInputStream fileInputStream = new FileInputStream(file);
-                byte[] bytes = new byte[fileInputStream.available()];
-                fileInputStream.read(bytes);
-                videoOut.write(bytes);
-                fileInputStream.close();
-                if (listener != null) {
-                    listener.mergerProcess(file);
+                try {
+                    FileInputStream fileInputStream = new FileInputStream(file);
+                    byte[] bytes = new byte[fileInputStream.available()];
+                    fileInputStream.read(bytes);
+                    videoOut.write(bytes);
+                    fileInputStream.close();
+                } finally {
+                    if (listener != null) {
+                        listener.mergerProcess(file);
+                    }
                 }
             }
             videoOut.close();
