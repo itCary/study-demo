@@ -8,6 +8,7 @@ import online.goudan.util.listener.M3U8TsListener;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
+import java.net.SocketException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,25 +104,24 @@ public class M3U8Manager {
 
         for (M3U8Ts m3U8Ts : m3U8TsList) {
             executorService.execute(() -> {
+                boolean flag = true;
                 File m3U8TsFile = new File(parentFile, m3U8Ts.getName());
                 m3U8.addM3U8TsFile(m3U8TsFile);
-                try {
-                    if (!m3U8TsFile.exists()) {
-                        URL url = new URL(m3U8.getBasePath() + m3U8Ts.getName());
-                        InputStream inputStream = url.openStream();
-                        FileOutputStream output = new FileOutputStream(m3U8TsFile);
-                        IOUtils.copy(inputStream, output);
-                        output.close();
-                        inputStream.close();
+                while (flag) {
+                    try (InputStream inputStream = new URL(m3U8.getBasePath() + m3U8Ts.getName()).openStream();
+                         FileOutputStream output = new FileOutputStream(m3U8TsFile);) {
+                        if (!m3U8TsFile.exists()) {
+                            IOUtils.copy(inputStream, output);
+                        }
+                        if (listener != null) {
+                            listener.onDownloaded(m3U8.getProcess());
+                        }
+                        flag = false;
+                    } catch (Exception exception) {
+                        flag = true;
                     }
-                    if (listener != null) {
-                        listener.onDownloaded(m3U8.getProcess());
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    m3U8.addDownloadedM3U8Ts(m3U8Ts);
                 }
+                m3U8.addDownloadedM3U8Ts(m3U8Ts);
                 countDownLatch.countDown();
             });
         }
