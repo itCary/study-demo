@@ -1,15 +1,20 @@
 package online.goudan.util;
 
+import online.goudan.domain.M3U8;
+import online.goudan.domain.M3U8Ts;
 import online.goudan.domain.VideoInfo;
 
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 刘成龙
@@ -58,7 +63,27 @@ public class DBManager {
             final int i = preparedStatement.executeUpdate();
             System.out.println(i > 0);
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println(videoInfo.getVideoName() + ", 保存到数据库失败");
         }
+    }
+
+    public List<VideoInfo> getm3U8List(int id) {
+        id--;
+        List<VideoInfo> videoInfos = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql:///novel?useSSL=false", "root", "root")) {
+            String querySql = "select name,url from au where id > ?";
+            PreparedStatement statement = connection.prepareStatement(querySql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                byte[] names = Base64.getDecoder().decode(resultSet.getString("name"));
+                VideoInfo videoInfo = new VideoInfo(new String(names, StandardCharsets.UTF_8), resultSet.getString("url"));
+                videoInfos.add(videoInfo);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return videoInfos;
     }
 }

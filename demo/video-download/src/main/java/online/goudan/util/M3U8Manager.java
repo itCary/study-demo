@@ -1,11 +1,11 @@
 package online.goudan.util;
 
 import com.mysql.jdbc.StringUtils;
-import com.oracle.tools.packager.IOUtils;
 import online.goudan.domain.M3U8;
 import online.goudan.domain.M3U8Ts;
 import online.goudan.domain.VideoInfo;
 import online.goudan.util.listener.M3U8TsListener;
+import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.net.URL;
@@ -103,18 +103,24 @@ public class M3U8Manager {
 
         for (M3U8Ts m3U8Ts : m3U8TsList) {
             executorService.execute(() -> {
+                File m3U8TsFile = new File(parentFile, m3U8Ts.getName());
+                m3U8.addM3U8TsFile(m3U8TsFile);
                 try {
-                    File m3U8TsFile = new File(parentFile, m3U8Ts.getName());
                     if (!m3U8TsFile.exists()) {
-                        IOUtils.copyFromURL(new URL(m3U8.getBasePath() + m3U8Ts.getName()), m3U8TsFile);
+                        URL url = new URL(m3U8.getBasePath() + m3U8Ts.getName());
+                        InputStream inputStream = url.openStream();
+                        FileOutputStream output = new FileOutputStream(m3U8TsFile);
+                        IOUtils.copy(inputStream, output);
+                        output.close();
+                        inputStream.close();
                     }
-                    m3U8.addDownloadedM3U8Ts(m3U8Ts);
-                    m3U8.addM3U8TsFile(m3U8TsFile);
                     if (listener != null) {
                         listener.onDownloaded(m3U8.getProcess());
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                } finally {
+                    m3U8.addDownloadedM3U8Ts(m3U8Ts);
                 }
                 countDownLatch.countDown();
             });
@@ -150,11 +156,16 @@ public class M3U8Manager {
             File videoFile = new File(m3U8.getLocalDirPath(), videoInfo.getVideoName() + ".ts");
             FileOutputStream videoOut = new FileOutputStream(videoFile, true);
             for (File file : m3U8TsFileList) {
-                videoOut.write(IOUtils.readFully(file));
+                FileInputStream fileInputStream = new FileInputStream(file);
+                byte[] bytes = new byte[fileInputStream.available()];
+                fileInputStream.read(bytes);
+                videoOut.write(bytes);
+                fileInputStream.close();
                 if (listener != null) {
                     listener.mergerProcess(file);
                 }
             }
+            videoOut.close();
             if (listener != null) {
                 File parentFile = new File(m3U8.getLocalDirPath(), videoInfo.getVideoName());
                 listener.megerFinish(parentFile);

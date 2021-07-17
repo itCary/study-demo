@@ -19,7 +19,6 @@ public class M3U8 {
     private float downloadedTime;
     private List<M3U8Ts> m3U8TsList = new ArrayList<>();
     private List<File> m3U8TsFileList = new ArrayList<>();
-    private List<M3U8Ts> downloadedM3U8TsList = new ArrayList<>();
 
     public String getBasePath() {
         return basePath;
@@ -33,9 +32,6 @@ public class M3U8 {
         return localDirPath;
     }
 
-    public float getTotalTime() {
-        return totalTime;
-    }
 
     public void setTotalTime(float totalTime) {
         this.totalTime = totalTime;
@@ -49,21 +45,11 @@ public class M3U8 {
         return m3U8TsList;
     }
 
-    public float getDownloadedTime() {
-        return downloadedTime;
-    }
-
-    public void setDownloadedTime(float downloadedTime) {
-        this.downloadedTime = downloadedTime;
-    }
 
     public List<File> getM3U8TsFileList() {
         return m3U8TsFileList;
     }
 
-    public List<M3U8Ts> getDownloadedM3U8TsList() {
-        return downloadedM3U8TsList;
-    }
 
     @Override
     public String toString() {
@@ -84,7 +70,6 @@ public class M3U8 {
     }
 
     public void addDownloadedM3U8Ts(M3U8Ts m3U8Ts) {
-        downloadedM3U8TsList.add(m3U8Ts);
         downloadedTime += m3U8Ts.getSeconds();
     }
 

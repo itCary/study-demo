@@ -20,7 +20,11 @@ import java.util.concurrent.Executors;
 @SuppressWarnings("all")
 public class WebDriverManager {
     static {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
+        if (OSinfo.isWindows()) {
+            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        } else if (OSinfo.isMacOS() || OSinfo.isMacOSX()) {
+            System.setProperty("webdriver.chrome.driver", "chromedriver");
+        }
     }
 
     private static List<WebDriver> driverList = new ArrayList<>();
