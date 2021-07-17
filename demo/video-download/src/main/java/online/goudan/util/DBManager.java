@@ -68,13 +68,13 @@ public class DBManager {
         }
     }
 
-    public List<VideoInfo> getm3U8List(int id) {
-        id--;
+    public List<VideoInfo> getm3U8List(int startId, int endId) {
         List<VideoInfo> videoInfos = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:mysql:///novel?useSSL=false", "root", "root")) {
-            String querySql = "select name,url from au where id > ?";
+            String querySql = "select name,url from au where id between ? and ?";
             PreparedStatement statement = connection.prepareStatement(querySql);
-            statement.setInt(1, id);
+            statement.setInt(1, startId);
+            statement.setInt(2, endId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 byte[] names = Base64.getDecoder().decode(resultSet.getString("name"));

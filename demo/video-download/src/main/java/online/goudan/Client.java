@@ -40,10 +40,13 @@ public class Client {
                 break;
             }
             if ("db".equals(videoUrl)) {
-                System.out.println("输入开始下载id: ");
-                int id = scanner.nextInt();
+                System.out.println("输入开始下载起始id: ");
+                int startId = scanner.nextInt();
                 scanner.nextLine();
-                List<VideoInfo> videoInfos = DBManager.getInstance().getm3U8List(id);
+                System.out.println("输入开始下载终止id: ");
+                int endId = scanner.nextInt();
+                scanner.nextLine();
+                List<VideoInfo> videoInfos = DBManager.getInstance().getm3U8List(startId, endId);
                 for (VideoInfo videoInfo : videoInfos) {
                     executorService.execute(() -> downM3U8Ts(videoInfo));
                 }
@@ -102,6 +105,7 @@ public class Client {
                     for (File file : files) {
                         file.delete();
                     }
+                    parentFile.delete();
                 }
 
             }

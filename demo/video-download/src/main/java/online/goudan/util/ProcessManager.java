@@ -49,7 +49,7 @@ public class ProcessManager {
         return null;
     }
 
-    public void setProcess(int process) {
+    public synchronized void setProcess(int process) {
         if (this.process != Math.min(process, PROCESS_MAX)) {
             this.process = process;
             changeProcessFile();
@@ -64,7 +64,7 @@ public class ProcessManager {
         }
     }
 
-    private synchronized void changeProcessFile() {
+    private void changeProcessFile() {
         try {
             outputStream.write(String.format("[%s] 已下载: %3d%%%n", simpleDateFormat.format(new Date()), process).getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {

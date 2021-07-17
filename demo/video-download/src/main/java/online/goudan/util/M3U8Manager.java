@@ -103,25 +103,31 @@ public class M3U8Manager {
         CountDownLatch countDownLatch = new CountDownLatch(m3U8TsList.size());
 
         for (M3U8Ts m3U8Ts : m3U8TsList) {
+            File m3U8TsFile = new File(parentFile, m3U8Ts.getName());
+            m3U8.addM3U8TsFile(m3U8TsFile);
             executorService.execute(() -> {
                 boolean flag = true;
-                File m3U8TsFile = new File(parentFile, m3U8Ts.getName());
-                m3U8.addM3U8TsFile(m3U8TsFile);
+                if (m3U8TsFile.exists()) {
+                    flag = false;
+                }
                 while (flag) {
                     try (InputStream inputStream = new URL(m3U8.getBasePath() + m3U8Ts.getName()).openStream();
                          FileOutputStream output = new FileOutputStream(m3U8TsFile);) {
-                        if (!m3U8TsFile.exists()) {
-                            IOUtils.copy(inputStream, output);
+                        byte[] buffer = new byte[2048];
+                        int len = -1;
+                        while ((len = inputStream.read(buffer)) != -1) {
+                            output.write(buffer, 0, len);
                         }
-                        if (listener != null) {
-                            listener.onDownloaded(m3U8.getProcess());
-                        }
+
                         flag = false;
                     } catch (Exception exception) {
                         flag = true;
                     }
                 }
-                m3U8.addDownloadedM3U8Ts(m3U8Ts);
+                if (listener != null) {
+                    m3U8.addDownloadedM3U8Ts(m3U8Ts);
+                    listener.onDownloaded(m3U8.getProcess());
+                }
                 countDownLatch.countDown();
             });
         }
@@ -143,14 +149,16 @@ public class M3U8Manager {
             return Integer.parseInt(s1) - Integer.parseInt(s2);
         });
 
-        try {
-            File videoFile = new File(m3U8.getLocalDirPath(), videoInfo.getVideoName() + ".ts");
-            FileOutputStream videoOut = new FileOutputStream(videoFile, true);
+        try (FileOutputStream videoOut =
+                     new FileOutputStream(new File(m3U8.getLocalDirPath(), videoInfo.getVideoName() + ".ts"),
+                             true)) {
             for (File file : m3U8TsFileList) {
                 try (FileInputStream fileInputStream = new FileInputStream(file)) {
-                    byte[] bytes = new byte[fileInputStream.available()];
-                    fileInputStream.read(bytes);
-                    videoOut.write(bytes);
+                    byte[] buffer = new byte[2048];
+                    int len = -1;
+                    while ((len = fileInputStream.read(buffer)) != -1) {
+                        videoOut.write(buffer, 0, len);
+                    }
                 } finally {
                     file.delete();
                     if (listener != null) {
@@ -158,7 +166,6 @@ public class M3U8Manager {
                     }
                 }
             }
-            videoOut.close();
             if (listener != null) {
                 File parentFile = new File(m3U8.getLocalDirPath(), videoInfo.getVideoName());
                 listener.megerFinish(parentFile);
