@@ -1,7 +1,0 @@
-spring:
-  rabbitmq:
-    host: mylinux
-    username: goudan
-    password: goudan125
-    virtual-host: piaoxianglou
-    port: 5672
